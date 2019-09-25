@@ -3,7 +3,7 @@ package prova01;
 /** @author lucas.silva */
 public class Empresa {
 	
-	private String cnpj;
+	private Cnpj cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
 	private Endereco endereco;
@@ -15,11 +15,11 @@ public class Empresa {
 	public Empresa() {
 	}
 
-	public String getCnpj() {
+	public Cnpj getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj) {
+	public void setCnpj(Cnpj cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -43,8 +43,8 @@ public class Empresa {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEndereco(Endereco string) {
+		this.endereco = string;
 	}
 
 	public int getTelefone() {
@@ -91,5 +91,4 @@ public class Empresa {
 				+ "\nEndereço: " + endereco + "\nTelefone: " + telefone + "\nÁrea de Atuação: " + areaAtuacao
 				+ "\nNúmero de Funcionários: " + numeroFuncionarios + "\nPorte da Empresa: " + porte;
 	}
-	
 }
