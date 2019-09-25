@@ -19,8 +19,8 @@ public class Empresa {
 		return cnpj;
 	}
 
-	public void setCnpj(Cnpj cnpj) {
-		this.cnpj = cnpj;
+	public void setCnpj(Cnpj string) {
+		this.cnpj = string;
 	}
 
 	public String getRazaoSocial() {
@@ -84,11 +84,17 @@ public class Empresa {
 		}
 		return i;
 	}
+	public String toString2() {
+		return "Porte da empresa: " + porte;
+	}
 
 	@Override
 	public String toString() {
-		return "Dados da Empresa:" + "\nCNPJ: " + cnpj + "\nRazão Social: " + razaoSocial + "\nNome Fantasia: " + nomeFantasia
-				+ "\nEndereço: " + endereco + "\nTelefone: " + telefone + "\nÁrea de Atuação: " + areaAtuacao
-				+ "\nNúmero de Funcionários: " + numeroFuncionarios + "\nPorte da Empresa: " + porte;
+		return "Dados da Empresa:" + "\nCNPJ: " + cnpj + "\nRazão Social: " 
+				+ razaoSocial + "\nNome Fantasia: " + nomeFantasia
+				+ "\nEndereço: " + endereco + "\nTelefone: " + telefone 
+				+ "\nÁrea de Atuação: " + areaAtuacao
+				+ "\nNúmero de Funcionários: " + numeroFuncionarios 
+				+ "\nPorte da Empresa: " + porte;
 	}
 }
