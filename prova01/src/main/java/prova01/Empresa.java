@@ -6,15 +6,13 @@ public class Empresa {
 	private String cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
-	private String endereco;
+	private Endereco endereco;
 	private int telefone;
 	private String areaAtuacao;
 	private int numeroFuncionarios;
-	private int porte;
+	private String porte;
 	
-	public Empresa(String cnpj, String razaoSocial) {
-		this.cnpj = cnpj;
-		this.razaoSocial = razaoSocial;
+	public Empresa() {
 	}
 
 	public String getCnpj() {
@@ -41,11 +39,11 @@ public class Empresa {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
@@ -73,15 +71,15 @@ public class Empresa {
 		this.numeroFuncionarios = numeroFuncionarios;
 	}
 	
-	public int getPorte(int i) {
-		this.porte = i;
-		if (this.numeroFuncionarios <= 50) {
+	public int getPorte() {
+		int i = numeroFuncionarios;
+		if (i <= 50) {
 			System.out.println("Empresa Pequeno Porte.");
 		}
-		if (this.numeroFuncionarios >= 100) {
+		if (i >= 100) {
 			System.out.println("Empresa Médio Porte");
 		}
-		if (this.numeroFuncionarios > 200) {
+		if (i > 200) {
 			System.out.println("Empresa Grande Porte");
 		}
 		return i;
