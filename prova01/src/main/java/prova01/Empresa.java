@@ -10,7 +10,6 @@ public class Empresa {
 	private int telefone;
 	private String areaAtuacao;
 	private int numeroFuncionarios;
-	private String porte;
 	
 	public Empresa() {
 	}
@@ -64,6 +63,7 @@ public class Empresa {
 	}
 
 	public int getNumeroFuncionarios() {
+		
 		return numeroFuncionarios;
 	}
 
@@ -71,22 +71,6 @@ public class Empresa {
 		this.numeroFuncionarios = numeroFuncionarios;
 	}
 	
-	public int getPorte() {
-		int i = numeroFuncionarios;
-		if (i <= 50) {
-			System.out.println("Empresa Pequeno Porte.");
-		}
-		if (i >= 100) {
-			System.out.println("Empresa Médio Porte");
-		}
-		if (i > 200) {
-			System.out.println("Empresa Grande Porte");
-		}
-		return i;
-	}
-	public String toString2() {
-		return "Porte da empresa: " + porte;
-	}
 
 	@Override
 	public String toString() {
@@ -94,7 +78,61 @@ public class Empresa {
 				+ razaoSocial + "\nNome Fantasia: " + nomeFantasia
 				+ "\nEndereço: " + endereco + "\nTelefone: " + telefone 
 				+ "\nÁrea de Atuação: " + areaAtuacao
-				+ "\nNúmero de Funcionários: " + numeroFuncionarios 
-				+ "\nPorte da Empresa: " + porte;
+				+ "\nNúmero de Funcionários: " + numeroFuncionarios;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((areaAtuacao == null) ? 0 : areaAtuacao.hashCode());
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+		result = prime * result + ((nomeFantasia == null) ? 0 : nomeFantasia.hashCode());
+		result = prime * result + numeroFuncionarios;
+		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
+		result = prime * result + telefone;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		if (areaAtuacao == null) {
+			if (other.areaAtuacao != null)
+				return false;
+		} else if (!areaAtuacao.equals(other.areaAtuacao))
+			return false;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		if (nomeFantasia == null) {
+			if (other.nomeFantasia != null)
+				return false;
+		} else if (!nomeFantasia.equals(other.nomeFantasia))
+			return false;
+		if (numeroFuncionarios != other.numeroFuncionarios)
+			return false;
+		if (razaoSocial == null) {
+			if (other.razaoSocial != null)
+				return false;
+		} else if (!razaoSocial.equals(other.razaoSocial))
+			return false;
+		if (telefone != other.telefone)
+			return false;
+		return true;
 	}
 }

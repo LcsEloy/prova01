@@ -13,9 +13,6 @@ public class Endereco {
 		
 	}
 	
-	public String getLogradouro() {
-		return logradouro;
-	}
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}

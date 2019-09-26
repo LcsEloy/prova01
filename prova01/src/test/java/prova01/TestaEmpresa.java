@@ -1,5 +1,7 @@
 package prova01;
 
+import org.junit.Test;
+
 public class TestaEmpresa {
 	// testes cnpj:
 	// teste cnpj vazio
@@ -24,6 +26,10 @@ public class TestaEmpresa {
 	
 //	teste numero de funcionarios
 //	teste numero de funcionarios vazio
+	public void nao_deve_aceitar_valor_vazio() {
+		Empresa a = new Empresa();
+		a.setNumeroFuncionarios();
+	}
 	
 //	teste porte
 //	teste porte funciona
