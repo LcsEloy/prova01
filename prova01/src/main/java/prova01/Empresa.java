@@ -1,6 +1,7 @@
 package prova01;
 
 /** @author lucas.silva */
+
 public class Empresa {
 	
 	private Cnpj cnpj;
@@ -63,7 +64,6 @@ public class Empresa {
 	}
 
 	public int getNumeroFuncionarios() {
-		
 		return numeroFuncionarios;
 	}
 
