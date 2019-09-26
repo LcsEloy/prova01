@@ -20,8 +20,15 @@ public class TestaEmpresa {
 	
 	}
 	
+	public void nao_deve_aceitar_razaoSocial_vazia() {
+		
+	}
+	
 	// teste nome fantasia:
 	// teste nome fantasia vazio
+	public void nao_deve_aceitar_nomeFantasia_vazio() {
+		
+	}
 	
 //	teste endereço
 //	teste endereço vazio
@@ -30,13 +37,20 @@ public class TestaEmpresa {
 //	teste telefone
 //	teste telefone invalido
 //	teste telefone vazio
+	public void nao_deve_aceitar_telefone_invalido() {
+		
+	}
+	
+	public void nao_deve_aceitar_telefone_vazio() {
+		
+	}
 	
 //	teste area de atuaçao
 //	teste area de atuaçao vazia
 	
 //	teste numero de funcionarios
 //	teste numero de funcionarios vazio
-	public void nao_deve_aceitar_valor_vazio() {
+	public void nao_deve_aceitar_numFun_vazio() {
 		Empresa a = new Empresa();
 		a.setNumeroFuncionarios();
 	}
