@@ -9,8 +9,14 @@ public class Endereco {
 	private String municipio;
 	private String uf;
 	
-	public Endereco() {
-		
+	public Endereco(String logradouro, int num, String bairro, 
+			String cep, String municipio, String uf) {
+		this.logradouro = logradouro;
+		this.num = num;
+		this.bairro = bairro;
+		this.cep = cep;
+		this.municipio = municipio;
+		this.uf = uf;
 	}
 	
 	public void setLogradouro(String logradouro) {
