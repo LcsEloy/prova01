@@ -1,8 +1,11 @@
 package prova01;
 
-import org.junit.Test;
-
 public class TestaEmpresa {
+	
+	public void antes() {
+		
+	}
+	
 	// testes cnpj:
 	// teste cnpj vazio
 	// teste cnpj invalido
