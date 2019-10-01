@@ -139,10 +139,4 @@ public class Endereco {
 			return false;
 		return true;
 	}
-	
-	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/LcsEloy/test.git

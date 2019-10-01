@@ -130,46 +130,6 @@ public class Empresa {
 		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
 		result = prime * result + telefone;
 		return result;
-<<<<<<< HEAD
-=======
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empresa other = (Empresa) obj;
-		if (areaAtuacao == null) {
-			if (other.areaAtuacao != null)
-				return false;
-		} else if (!areaAtuacao.equals(other.areaAtuacao))
-			return false;
-		if (cnpj == null) {
-			if (other.cnpj != null)
-				return false;
-		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		if (nomeFantasia == null) {
-			if (other.nomeFantasia != null)
-				return false;
-		} else if (!nomeFantasia.equals(other.nomeFantasia))
-			return false;
-		if (numeroFuncionarios != other.numeroFuncionarios)
-			return false;
-		if (razaoSocial == null) {
-			if (other.razaoSocial != null)
-				return false;
-		} else if (!razaoSocial.equals(other.razaoSocial))
-			return false;
-		if (telefone != other.telefone)
-			return false;
-		return true;
->>>>>>> branch 'master' of https://github.com/LcsEloy/test.git
 	}
 
 
@@ -208,5 +168,4 @@ public class Empresa {
 			return false;
 		return true;
 	}
-
 }
