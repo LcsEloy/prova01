@@ -141,4 +141,8 @@ public class Endereco {
 	}
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/LcsEloy/test.git
