@@ -14,10 +14,10 @@ public class Empresa {
 	private String nomeFantasia;
 	private String areaAtuacao;
 	private int numeroFuncionarios;
-	private int telefone;
+	private Integer telefone;
 	
 	public Empresa (String cnpj, String razaoSocial, String nomeFantasia, 
-					String areaAtuacao, int numeroFuncionarios, int telefone) {
+					String areaAtuacao, int numeroFuncionarios, Integer telefone) {
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
@@ -35,6 +35,9 @@ public class Empresa {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+		if (cnpj == null || cnpj.isEmpty() || cnpj.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio");
+		}
 	}
 
 
@@ -92,6 +95,9 @@ public class Empresa {
 
 	public void setNumeroFuncionarios(int numeroFuncionarios) {
 		this.numeroFuncionarios = numeroFuncionarios;
+		if (numeroFuncionarios == 0) { 
+			throw new NullPointerException("Deve conter ao menos um funcionário");
+		}
 	}
 
 
@@ -102,8 +108,11 @@ public class Empresa {
 
 
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
+		if (telefone == 0) {
+			throw new NullPointerException("Telefone inválido");
+		}
 	}
 	
 	
@@ -117,7 +126,7 @@ public class Empresa {
 				+ "\nNúmero de Funcionários: " + numeroFuncionarios
 				+ "\nTelefone: " + telefone;
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -128,7 +137,7 @@ public class Empresa {
 		result = prime * result + ((nomeFantasia == null) ? 0 : nomeFantasia.hashCode());
 		result = prime * result + numeroFuncionarios;
 		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
-		result = prime * result + telefone;
+		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
 
@@ -164,8 +173,12 @@ public class Empresa {
 				return false;
 		} else if (!razaoSocial.equals(other.razaoSocial))
 			return false;
-		if (telefone != other.telefone)
+		if (telefone == null) {
+			if (other.telefone != null)
+				return false;
+		} else if (!telefone.equals(other.telefone))
 			return false;
 		return true;
 	}
+
 }

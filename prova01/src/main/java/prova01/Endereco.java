@@ -25,6 +25,9 @@ public class Endereco {
 
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
+		if (logradouro == null || logradouro.isEmpty() || logradouro.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio.");
+		}
 	}
 
 
@@ -37,6 +40,9 @@ public class Endereco {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+		if (bairro == null || bairro.isEmpty() || bairro.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio");
+		}
 	}
 
 
@@ -49,6 +55,9 @@ public class Endereco {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+		if (cep == null || cep.isEmpty() || cep.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio");
+		}
 	}
 
 
@@ -61,6 +70,9 @@ public class Endereco {
 
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
+		if (municipio == null || municipio.isEmpty() || municipio.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio");
+		}
 	}
 
 
@@ -73,6 +85,9 @@ public class Endereco {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+		if (uf == null || uf.isEmpty() || uf.equals(" ")) { 
+			throw new NullPointerException("O valor não deve ser nulo ou vazio");
+		}
 	}
 
 
