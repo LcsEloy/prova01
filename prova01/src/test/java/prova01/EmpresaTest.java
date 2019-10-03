@@ -1,17 +1,26 @@
 package prova01;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
-import junit.framework.Assert;
 
 public class EmpresaTest {
 	
 	private Empresa empTest;
+	
+	@BeforeClass
+	public static void inicioTestes() {
+		System.out.println("Iniciando os testes da classe Empresa...");
+	}
 	
 	@Before
 	public void antes() {
@@ -19,10 +28,10 @@ public class EmpresaTest {
 		String razaoSocial = "Sport Clube Corinthians Paulista";
 		String nomeFantasia = "Corinthians";
 		String areaAtuacao = "Futebol";
+		String telefone = "(11)20953000";
 		int numeroFuncionarios = 45;
-		Integer telefone = 1120953000;
 		empTest = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, numeroFuncionarios, telefone);
+									areaAtuacao, telefone, numeroFuncionarios);
 	}
 	
 	@After
@@ -30,6 +39,21 @@ public class EmpresaTest {
 		empTest = null;
 	}
 	
+	@AfterClass
+	public static void fimTestes() {
+		System.out.println("Testes da classe Empresa concluídos.");
+	}
+	
+	@Test
+	public void deve_apresentar_os_dados_da_empresa_no_console() {
+		System.out.println(empTest);
+	}
+	
+	@Test
+	public void deve_apresentar_os_dados_da_empresa_com_alteracoes() {
+		empTest.setRazaoSocial("Sem nome");
+		System.out.println(empTest);
+	}
 	
 	// testes cnpj:
 	// teste cnpj vazio
@@ -47,27 +71,50 @@ public class EmpresaTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void nao_deve_aceitar_cnpj_invalido() {
+	public void nao_deve_aceitar_cnpj_em_branco() {
 		empTest.setCnpj(" ");
 		assertNotNull("should not be empty", empTest.getCnpj());
 	}
 	
-	@Test
-	public void deve_apontar_igualdade_cnpj() {
-		assertEquals("61902722000126", empTest.getCnpj());
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_aceitar_cnpj_com_letras() {
+		empTest.setCnpj("6190272200012R");
+		assertNull("Cnpj Invalido", empTest.getCnpj());
 	}
 	
-	@Test(expected = org.junit.ComparisonFailure.class)
-	public void nao_deve_apontar_igualdade_cnpj() {
-		assertEquals("61750345000157", empTest.getCnpj());
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_aceitar_cnpj_com_numeros_iguais() {
+		empTest.setCnpj("00000000000000");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_aceitar_cnpj_com_menos_de_14_digitos() {
+		empTest.setCnpj("12");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_aceitar_cnpj_com_mais_de_14_digitos() {
+		empTest.setCnpj("123456789101213");
 	}
 	
 	@Test
 	public void deve_apontar_cnpj_valido() {
+		empTest.setCnpj("61902722000126");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void deve_apontar_cnpj_invalido() {
+		empTest.setCnpj("61902722000127");
 	}
 	
 	@Test
-	public void deve_apontar_cnpj_invalido() {
+	public void deve_apontar_igualdade_cnpj() {
+		assertEquals(empTest.getCnpj(), empTest.getCnpj());
+	}
+	
+	@Test
+	public void nao_deve_apontar_igualdade_cnpj() {
+		assertThat(empTest.getCnpj(), is(not("61750345000157")));
 	}
 	
 	
@@ -87,7 +134,7 @@ public class EmpresaTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void nao_deve_aceitar_razaoSocial_invalido() {
+	public void nao_deve_aceitar_razaoSocial_em_branco() {
 		empTest.setRazaoSocial(" ");
 		assertNotNull("should not be empty", empTest.getRazaoSocial());
 	}
@@ -97,14 +144,14 @@ public class EmpresaTest {
 		assertEquals("Sport Clube Corinthians Paulista", empTest.getRazaoSocial());
 	}
 	
-	@Test(expected = org.junit.ComparisonFailure.class)
+	@Test
 	public void nao_deve_apontar_igualdade_razaoSocial() {
-		assertEquals("Sociedade Esportiva Palmeiras", empTest.getRazaoSocial());
+		assertThat(empTest.getRazaoSocial(), is(not("Sociedade Esportiva Palmeiras")));
 	}
 	
 	// teste nome fantasia:
 	// teste nome fantasia vazio
-	@Test(expected = NullPointerException.class)
+	@Test(expected = AssertionError.class)
 	public void nao_deve_aceitar_nomeFantasia_nulo() {
 		empTest.setNomeFantasia(null);
 		assertNotNull("should not be null", empTest.getNomeFantasia());
@@ -127,14 +174,14 @@ public class EmpresaTest {
 		assertEquals("Corinthians", empTest.getNomeFantasia());
 	}
 	
-	@Test(expected = org.junit.ComparisonFailure.class)
+	@Test
 	public void nao_deve_apontar_igualdade_nomeFantasia() {
-		assertEquals("Palmeiras", empTest.getNomeFantasia());
+		assertThat(empTest.getNomeFantasia(), is(not("Palmeiras")));
 	}
 	
 //	teste area de atuaçao
 //	teste area de atuaçao vazia
-	@Test(expected = NullPointerException.class)
+	@Test(expected = AssertionError.class)
 	public void nao_deve_aceitar_areaAtuacao_nula() {
 		empTest.setAreaAtuacao(null);
 		assertNotNull("should not be null", empTest.getAreaAtuacao());
@@ -157,29 +204,47 @@ public class EmpresaTest {
 		assertEquals("Futebol", empTest.getAreaAtuacao());
 	}
 	
-	@Test(expected = org.junit.ComparisonFailure.class)
+	@Test
 	public void nao_deve_apontar_igualdade_areaAtuacao() {
-		assertEquals("Aviação", empTest.getAreaAtuacao());
+		assertThat(empTest.getAreaAtuacao(), is(not("Aviação")));
 	}
 	
 	
 //	teste telefone
 //	teste telefone invalido
-//	teste telefone vazio	
+//	teste telefone vazio
+	@Test(expected = AssertionError.class)
+	public void nao_deve_aceitar_telefone_nulo() {
+		empTest.setTelefone(null);
+		assertNotNull("should not be null", empTest.getTelefone());
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void nao_deve_aceitar_telefone_vazio() {
+		empTest.setTelefone("");
+		assertNotNull("should not be empty", empTest.getTelefone());
+	}
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_telefone_invalido() {
-		empTest.setTelefone(0);
+		empTest.setTelefone(" ");
 		assertNotNull("should not be invalid", empTest.getTelefone());
 	}
 	
 	@Test
-	public void deve_apontar_igualdade_telefone() {
-		assertEquals(1120953000, empTest.getTelefone());
+	public void deve_aceitar_telefone_com_10_digitos() {
+		
 	}
 	
-	@Test(expected = java.lang.AssertionError.class)
+	
+	
+	@Test
+	public void deve_apontar_igualdade_telefone() {
+		assertEquals("(11)20953000", empTest.getTelefone());
+	}
+	
+	@Test
 	public void nao_deve_apontar_igualdade_telefone() {
-		assertEquals(1120953001, empTest.getTelefone());
+		assertThat(empTest.getTelefone(), is(not("(11)20953001")));
 	}
 	
 //	teste numero de funcionarios
@@ -187,17 +252,21 @@ public class EmpresaTest {
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_numumeroFuncionarios_vazio() {
 		empTest.setNumeroFuncionarios(0);
-		assertNotNull(", object);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void nao_deve_aceitar_numeroFuncionarios_negativo() {
+		empTest.setNumeroFuncionarios(-1);
 	}
 	
 	@Test
 	public void deve_apontar_igualdade_numeroFuncionarios() {
-		assertEquals("Futebol", empTest.getNumeroFuncionarios());
+		assertEquals(45, empTest.getNumeroFuncionarios());
 	}
 	
-	@Test(expected = org.junit.ComparisonFailure.class)
+	@Test
 	public void nao_deve_apontar_igualdade_numFuncionarios() {
-		assertEquals("Aviação", empTest.getNumeroFuncionarios());
+		assertThat(empTest.getNumeroFuncionarios(), is(not(54)));
 	}
 	
 }

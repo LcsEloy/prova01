@@ -3,6 +3,9 @@ package prova01;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -11,6 +14,11 @@ public class EnderecoTest {
 	private static Endereco endTest;
 	
 	@BeforeClass
+	public static void inicioTestes() {
+		System.out.println("Iniciando os testes da classe Endereço...");
+	}
+	
+	@Before
 	public static void antes() {
 		String logradouro = "Rua São Jorge, 777";
 		String bairro = "Tatuapé";
@@ -18,6 +26,16 @@ public class EnderecoTest {
 		String municipio = "São Paulo";
 		String uf = "SP";
 		endTest = new Endereco (logradouro, bairro, cep, municipio, uf);
+	}
+	
+	@After
+	public void depois() {
+		endTest = null;
+	}
+	
+	@AfterClass
+	public static void fimTestes() {
+		System.out.println("Testes da classe Empresa concluídos.");
 	}
 	
 //	Testes logradouro
