@@ -1,5 +1,9 @@
 package prova01;
 
+/**
+ * /** @author lucas.silva /**
+ */
+
 public class Endereco {
 
 	private String logradouro;
@@ -21,8 +25,6 @@ public class Endereco {
 		return logradouro;
 	}
 
-
-
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 		if (logradouro == null || logradouro.isEmpty() || logradouro.equals(" ")) { 
@@ -30,13 +32,9 @@ public class Endereco {
 		}
 	}
 
-
-
 	public String getBairro() {
 		return bairro;
 	}
-
-
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
@@ -45,28 +43,37 @@ public class Endereco {
 		}
 	}
 
-
-
 	public String getCep() {
 		return cep;
 	}
-
-
 
 	public void setCep(String cep) {
 		this.cep = cep;
 		if (cep == null || cep.isEmpty() || cep.equals(" ")) { 
 			throw new NullPointerException("O valor não deve ser nulo ou vazio");
 		}
+		
+		if (cep.equals("00000000") || cep.equals("11111111") || cep.equals("22222222")
+			|| cep.equals("33333333") || cep.equals("44444444") || cep.equals("55555555")
+			|| cep.equals("66666666") || cep.equals("77777777") || cep.equals("88888888")
+			|| cep.equals("99999999")) {
+			throw new IllegalArgumentException("O Cep não pode ser composto por números iguais.");
+		}
+		
+		for (int i = 0; i < cep.length(); i++) {
+			if (!Character.isDigit(cep.charAt(i))) {
+				throw new IllegalArgumentException("O Cep deve ser composto apenas por números.");
+			}
+		}
+		
+		if (cep.length() != 8) {
+			throw new IllegalArgumentException("O Cep deve conter 8 dígitos.");
+		}
 	}
-
-
 
 	public String getMunicipio() {
 		return municipio;
 	}
-
-
 
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
@@ -75,22 +82,25 @@ public class Endereco {
 		}
 	}
 
-
-
 	public String getUf() {
 		return uf;
 	}
-
-
 
 	public void setUf(String uf) {
 		this.uf = uf;
 		if (uf == null || uf.isEmpty() || uf.equals(" ")) { 
 			throw new NullPointerException("O valor não deve ser nulo ou vazio");
 		}
+		
+		for (int i = 0; i < uf.length(); i++) {
+			if (!Character.isLetter(uf.charAt(i))) {
+				throw new IllegalArgumentException("UF conter apenas letras.");
+			}
+		}
+		if (uf.length() != 2) {
+			throw new IllegalArgumentException("UF deve conter dois dígitos.");
+		}
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -110,47 +120,20 @@ public class Endereco {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
-		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
-		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
-		result = prime * result + ((municipio == null) ? 0 : municipio.hashCode());
-		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
+		result = prime * result + logradouro.hashCode();
+		result = prime * result + bairro.hashCode();
+		result = prime * result + cep.hashCode();
+		result = prime * result + municipio.hashCode();
+		result = prime * result + uf.hashCode();
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Endereco other = (Endereco) obj;
-		if (bairro == null) {
-			if (other.bairro != null)
-				return false;
-		} else if (!bairro.equals(other.bairro))
-			return false;
-		if (cep == null) {
-			if (other.cep != null)
-				return false;
-		} else if (!cep.equals(other.cep))
-			return false;
-		if (logradouro == null) {
-			if (other.logradouro != null)
-				return false;
-		} else if (!logradouro.equals(other.logradouro))
-			return false;
-		if (municipio == null) {
-			if (other.municipio != null)
-				return false;
-		} else if (!municipio.equals(other.municipio))
-			return false;
-		if (uf == null) {
-			if (other.uf != null)
-				return false;
-		} else if (!uf.equals(other.uf))
+	public boolean equals(Object obj) {		
+		Endereco other = (Endereco)obj;		
+		if(!logradouro.equals(other.logradouro) || !bairro.equals(other.bairro)
+		   || !cep.equals(other.cep) || !municipio.equals(other.municipio) 
+		   || !uf.equals(other.uf))
 			return false;
 		return true;
 	}

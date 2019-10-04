@@ -1,8 +1,5 @@
 package prova01;
 
-import java.util.InputMismatchException;
-
-
 /**
  * /** @author lucas.silva /**
  */
@@ -14,10 +11,10 @@ public class Empresa {
 	private String nomeFantasia;
 	private String areaAtuacao;
 	private String telefone;
-	private int numeroFuncionarios;
+	private String numeroFuncionarios;
 
 	public Empresa(String cnpj, String razaoSocial, String nomeFantasia, String areaAtuacao, String telefone,
-			int numeroFuncionarios) {
+			String numeroFuncionarios) {
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
@@ -63,7 +60,6 @@ public class Empresa {
 	    int num; 
 	    int peso;
 	 
-	    try {
 	      sm = 0;
 	      peso = 2;
 	      for (i=11; i>=0; i--) {
@@ -99,10 +95,8 @@ public class Empresa {
 	      if ((dig13 == cnpj.charAt(12)) && (dig14 == cnpj.charAt(13))) {
 	         return(true);
 	      } else return(false);
-	    } catch (InputMismatchException erro) {
-	        return(false);
+
 	    }
-	}
 
 	public String getRazaoSocial() {
 		return razaoSocial;
@@ -120,10 +114,10 @@ public class Empresa {
 	}
 
 	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
-		if (razaoSocial == null || razaoSocial.isEmpty() || razaoSocial.equals(" ")) {
+		if (nomeFantasia == null || nomeFantasia.isEmpty() || nomeFantasia.equals(" ")) {
 			throw new NullPointerException("O valor não deve ser nulo ou vazio.");
 		}
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	public String getAreaAtuacao() {
@@ -146,27 +140,38 @@ public class Empresa {
 		if (telefone == null || telefone.isEmpty() || telefone.equals(" ")) {
 			throw new NullPointerException("O Telefone não deve ser nulo ou vazio.");
 		}
-		for (int i = 0; i < cnpj.length(); i++) {
-			if (!Character.isDigit(cnpj.charAt(i))) {
+		for (int i = 0; i < telefone.length(); i++) {
+			if (!Character.isDigit(telefone.charAt(i))) {
 				throw new IllegalArgumentException("O Telefone deve ser composto apenas por números.");
 			}
 		}
-		if (cnpj.length() != 14) {
+		if (telefone.length() != 10) {
 			throw new IllegalArgumentException("O Telefone deve conter 10 (xx)xxxx-xxxx dígitos.");
 		}
 	}
 
-	public int getNumeroFuncionarios() {
+	public String getNumeroFuncionarios() {
 		return numeroFuncionarios;
 	}
 
-	public void setNumeroFuncionarios(int numeroFuncionarios) {
+	public void setNumeroFuncionarios(String numeroFuncionarios) {
 		this.numeroFuncionarios = numeroFuncionarios;
-		if (numeroFuncionarios < 1) {
-			throw new NullPointerException("Deve conter ao menos um funcionário.");
+		if (numeroFuncionarios == null || numeroFuncionarios.isEmpty() || numeroFuncionarios.equals(" ")) {
+			throw new NullPointerException("O valor não deve ser nulo ou vazio.");
 		}
-		if (numeroFuncionarios < 0) {
-			throw new NullPointerException("Número de Funcionários não pode ser negativo.");
+		
+		for (int i = 0; i < numeroFuncionarios.length(); i++) {
+			if (!Character.isDigit(numeroFuncionarios.charAt(i))) {
+				throw new IllegalArgumentException("O Número de funcionários deve ser composto apenas por números.");
+			}
+		}
+		
+		if (numeroFuncionarios.equals("0") || numeroFuncionarios.equals("00") || numeroFuncionarios.equals("000")
+			|| numeroFuncionarios.equals("0000") || numeroFuncionarios.equals("00000") || numeroFuncionarios.equals("000000")) {
+			throw new IllegalArgumentException("Deve conter ao menos um funcionário.");
+		}
+		if (numeroFuncionarios.length() > 6 || numeroFuncionarios.length() < 0) {
+			throw new IllegalArgumentException("Número de funcionários inválido");
 		}
 	}
 
@@ -181,52 +186,23 @@ public class Empresa {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((areaAtuacao == null) ? 0 : areaAtuacao.hashCode());
-		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-		result = prime * result + ((nomeFantasia == null) ? 0 : nomeFantasia.hashCode());
-		result = prime * result + numeroFuncionarios;
-		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
-		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
+		result = prime * result + areaAtuacao.hashCode();
+		result = prime * result + cnpj.hashCode();
+		result = prime * result + nomeFantasia.hashCode();
+		result = prime * result + numeroFuncionarios.hashCode();
+		result = prime * result + razaoSocial.hashCode();
+		result = prime * result + telefone.hashCode();
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empresa other = (Empresa) obj;
-		if (areaAtuacao == null) {
-			if (other.areaAtuacao != null)
-				return false;
-		} else if (!areaAtuacao.equals(other.areaAtuacao))
-			return false;
-		if (cnpj == null) {
-			if (other.cnpj != null)
-				return false;
-		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		if (nomeFantasia == null) {
-			if (other.nomeFantasia != null)
-				return false;
-		} else if (!nomeFantasia.equals(other.nomeFantasia))
-			return false;
-		if (numeroFuncionarios != other.numeroFuncionarios)
-			return false;
-		if (razaoSocial == null) {
-			if (other.razaoSocial != null)
-				return false;
-		} else if (!razaoSocial.equals(other.razaoSocial))
-			return false;
-		if (telefone == null) {
-			if (other.telefone != null)
-				return false;
-		} else if (!telefone.equals(other.telefone))
+	public boolean equals(Object obj) {		
+		Empresa other = (Empresa)obj;		
+		if(!cnpj.equals(other.cnpj) || !areaAtuacao.equals(other.areaAtuacao)
+			|| !nomeFantasia.equals(other.nomeFantasia) || !razaoSocial.equals(other.razaoSocial) 
+			|| !telefone.equals(other.telefone) || !numeroFuncionarios.equals(other.numeroFuncionarios))
 			return false;
 		return true;
 	}
-
+	
 }
