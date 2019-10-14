@@ -536,7 +536,7 @@ public class EmpresaTest {
 	
 	@Test
 	public void nao_deve_apontar_igualdade_numFuncionarios() {
-		assertThat(empTest.getNumeroFuncionarios(), is(not(54)));
+		assertThat(empTest.getNumeroFuncionarios(), is(not("54")));
 	}
 	
 }
