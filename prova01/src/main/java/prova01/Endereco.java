@@ -1,140 +1,158 @@
 package prova01;
 
-/**
- * /** @author lucas.silva /**
- */
-
 public class Endereco {
 
-	private String logradouro;
-	private String bairro;
-	private String cep;
-	private String municipio;
-	private String uf;
+    private String logradouro;
 
-	public Endereco(String logradouro, String bairro, String cep, 
-					String municipio, String uf) {
-		this.logradouro = logradouro;
-		this.bairro = bairro;
-		this.cep = cep;
-		this.municipio = municipio;
-		this.uf = uf;
-	}
+    private String bairro;
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+    private String cep;
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-		if (logradouro == null || logradouro.isEmpty() || logradouro.equals(" ")) { 
-			throw new NullPointerException("O valor não deve ser nulo ou vazio.");
-		}
-	}
+    private String municipio;
 
-	public String getBairro() {
-		return bairro;
-	}
+    private String uf;
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-		if (bairro == null || bairro.isEmpty() || bairro.equals(" ")) { 
-			throw new NullPointerException("O valor não deve ser nulo ou vazio");
-		}
-	}
+    public Endereco(String logradouro, String bairro, String cep, String municipio, String uf) {
+        this.logradouro = setLogradouro(logradouro);
+        this.bairro = setBairro(bairro);
+        this.cep = setCep(cep);
+        this.municipio = setMunicipio(municipio);
+        this.uf = setUf(uf);
+    }
 
-	public String getCep() {
-		return cep;
-	}
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-	public void setCep(String cep) {
-		this.cep = cep;
-		if (cep == null || cep.isEmpty() || cep.equals(" ")) { 
-			throw new NullPointerException("O valor não deve ser nulo ou vazio");
-		}
-		
-		if (cep.equals("00000000") || cep.equals("11111111") || cep.equals("22222222")
-			|| cep.equals("33333333") || cep.equals("44444444") || cep.equals("55555555")
-			|| cep.equals("66666666") || cep.equals("77777777") || cep.equals("88888888")
-			|| cep.equals("99999999")) {
-			throw new IllegalArgumentException("O Cep não pode ser composto por números iguais.");
-		}
-		
-		for (int i = 0; i < cep.length(); i++) {
-			if (!Character.isDigit(cep.charAt(i))) {
-				throw new IllegalArgumentException("O Cep deve ser composto apenas por números.");
-			}
-		}
-		
-		if (cep.length() != 8) {
-			throw new IllegalArgumentException("O Cep deve conter 8 dígitos.");
-		}
-	}
+    public String setLogradouro(String logradouro) {
+        verificaLogradouroNuloOuEmBranco(logradouro);
+        return this.logradouro = logradouro;
+    }
 
-	public String getMunicipio() {
-		return municipio;
-	}
+    private void verificaLogradouroNuloOuEmBranco(String logradouro) {
+        if (logradouro == null || logradouro.isEmpty() || logradouro.equals(" ")) {
+            throw new NullPointerException("O logradouro não deve ser nulo ou vazio.");
+        }
+    }
 
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
-		if (municipio == null || municipio.isEmpty() || municipio.equals(" ")) { 
-			throw new NullPointerException("O valor não deve ser nulo ou vazio");
-		}
-	}
+    public String getBairro() {
+        return bairro;
+    }
 
-	public String getUf() {
-		return uf;
-	}
+    public String setBairro(String bairro) {
+        verificaBairroNuloOuEmBranco(bairro);
+        return this.bairro = bairro;
+    }
 
-	public void setUf(String uf) {
-		this.uf = uf;
-		if (uf == null || uf.isEmpty() || uf.equals(" ")) { 
-			throw new NullPointerException("O valor não deve ser nulo ou vazio");
-		}
-		
-		for (int i = 0; i < uf.length(); i++) {
-			if (!Character.isLetter(uf.charAt(i))) {
-				throw new IllegalArgumentException("UF conter apenas letras.");
-			}
-		}
-		if (uf.length() != 2) {
-			throw new IllegalArgumentException("UF deve conter dois dígitos.");
-		}
-	}
+    private void verificaBairroNuloOuEmBranco(String bairro) {
+        if (bairro == null || bairro.isEmpty() || bairro.equals(" ")) {
+            throw new NullPointerException("O Bairro não deve ser nulo ou vazio");
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "Endereco: "
-				+ logradouro
-				+ ", "
-				+ bairro
-				+ ", "
-				+ cep
-				+ ", "
-				+ municipio
-				+ ", "
-				+ uf;
-	}
+    public String getCep() {
+        return cep;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + logradouro.hashCode();
-		result = prime * result + bairro.hashCode();
-		result = prime * result + cep.hashCode();
-		result = prime * result + municipio.hashCode();
-		result = prime * result + uf.hashCode();
-		return result;
-	}
+    public String setCep(String cep) {
+        verificaCepNuloOuEmBranco(cep);
+        verificaCepComNumerosIguais(cep);
+        verificaCepApenasComNumeros(cep);
+        verificaCepTamanhoCorreto(cep);
+        return this.cep = cep;
+    }
 
-	@Override
-	public boolean equals(Object obj) {		
-		Endereco other = (Endereco)obj;		
-		if(!logradouro.equals(other.logradouro) || !bairro.equals(other.bairro)
-		   || !cep.equals(other.cep) || !municipio.equals(other.municipio) 
-		   || !uf.equals(other.uf))
-			return false;
-		return true;
-	}
+    private void verificaCepTamanhoCorreto(String cep) {
+        if (cep.length() != 8) {
+            throw new IllegalArgumentException("O Cep deve conter 8 dígitos.");
+        }
+    }
+
+    private void verificaCepApenasComNumeros(String cep) {
+        for(int i = 0 ; i < cep.length() ; i++) {
+            if (!Character.isDigit(cep.charAt(i))) {
+                throw new IllegalArgumentException("O Cep deve ser composto apenas por números.");
+            }
+        }
+    }
+
+    private void verificaCepComNumerosIguais(String cep) {
+        if (cep.equals("00000000") || cep.equals("11111111") || cep.equals("22222222") || cep.equals("33333333") || cep.equals("44444444") || cep.equals("55555555") || cep.equals("66666666") ||
+            cep.equals("77777777") || cep.equals("88888888") || cep.equals("99999999")) {
+            throw new IllegalArgumentException("O Cep não pode ser composto por números iguais.");
+        }
+    }
+
+    private void verificaCepNuloOuEmBranco(String cep) {
+        if (cep == null || cep.isEmpty() || cep.equals(" ")) {
+            throw new NullPointerException("O CEP não deve ser nulo ou vazio");
+        }
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public String setMunicipio(String municipio) {
+        verificaMunicipioNuloOuEmBranco(municipio);
+        return this.municipio = municipio;
+    }
+
+    private void verificaMunicipioNuloOuEmBranco(String municipio) {
+        if (municipio == null || municipio.isEmpty() || municipio.equals(" ")) {
+            throw new NullPointerException("O Município não deve ser nulo ou vazio");
+        }
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public String setUf(String uf) {
+        verificaUfNulaOuEmBranco(uf);
+        verificaUfApenasComLetras(uf);
+        verificaUfTamanhoCorreto(uf);
+        return this.uf = uf;
+    }
+
+    private void verificaUfTamanhoCorreto(String uf) {
+        if (uf.length() != 2) {
+            throw new IllegalArgumentException("A UF deve conter dois dígitos.");
+        }
+    }
+
+    private void verificaUfApenasComLetras(String uf) {
+        for(int i = 0 ; i < uf.length() ; i++) {
+            if (!Character.isLetter(uf.charAt(i))) {
+                throw new IllegalArgumentException("A UF conter apenas letras.");
+            }
+        }
+    }
+
+    private void verificaUfNulaOuEmBranco(String uf) {
+        if (uf == null || uf.isEmpty() || uf.equals(" ")) {
+            throw new NullPointerException("A UF não deve ser nulo ou vazio");
+        }
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Endereco other = (Endereco) obj;
+        if (!logradouro.equals(other.logradouro))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + logradouro.hashCode();
+        return result;
+    }
+    
+    @Override
+    public String toString() {
+        return "Endereco: " + logradouro + ", " + bairro + ", " + cep + ", " + municipio + ", " + uf;
+    }
 }

@@ -16,21 +16,16 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- * /** @author lucas.silva /**
- */
 
 public class EmpresaTest {
 	
 	private Empresa empTest;
 	
-//	Exibe uma mensagem antes do inicio dos testes.
 	@BeforeClass 
 	public static void inicioTestes() {
 		System.out.println("Iniciando teste...");
 	}
 	
-//	Atribue valores antes de cada teste unitário.
 	@Before
 	public void antes() {
 		String cnpj = "61902722000126";
@@ -43,40 +38,34 @@ public class EmpresaTest {
 									areaAtuacao, telefone, numeroFuncionarios);
 	}
 	
-//	Deixa os valores nulos após cada teste.
 	@After
 	public void depois() {
 		empTest = null;
 	}
 	
-//	Exibe uma mensagem ao final após os testes serem concluidos.
 	@AfterClass
 	public static void fimTestes() {
 		System.out.println("Teste concluído.");
 	}
 	
-//	Testa se valores estão sendo iniciados corretamente.
 	@Test
 	public void deve_apresentar_os_dados_da_empresa_no_console() {
 		System.out.println(empTest);
 	}
 	
-//	Testa alterações nos valores via método set.
 	@Test
 	public void deve_apresentar_os_dados_da_empresa_com_alteracoes() {
 		empTest.setRazaoSocial("Sem nome");
 		System.out.println(empTest);
 	}
 	
-//--------------Teste Ignore--------------//
 	@Ignore
 	@Test
 	public void deve_ignorar_este_teste() {
 		System.out.println("Isso não deve ser impresso!");
 	}
 	
-//--------------Teste TimeOut--------------//
-	@Test (timeout = 1)
+	@Test (timeout = 100)
 	public void nao_deve_exceder_o_tempo_proposto() {
 		String cnpj = "61902722000126";
 		String razaoSocial = "Sport Clube Corinthians Paulista";
@@ -88,7 +77,6 @@ public class EmpresaTest {
 									areaAtuacao, telefone, numeroFuncionarios);
 	}
 	
-//--------------Testes hashCode--------------//
 	@Test
 	public void deve_apontar_igualdade_de_objetos_utilizando_hashcode() {
 		String cnpj = empTest.getCnpj();
@@ -104,7 +92,7 @@ public class EmpresaTest {
 	
 	@Test
 	public void nao_deve_apontar_igualdade_de_objetos_utilizando_hashcode() {
-		String cnpj = "45871236954252";
+		String cnpj = "11862405000155";
 		String razaoSocial = empTest.getRazaoSocial();
 		String nomeFantasia = empTest.getNomeFantasia();
 		String areaAtuacao = empTest.getAreaAtuacao();
@@ -115,7 +103,6 @@ public class EmpresaTest {
 		assertNotEquals(empTest.hashCode(), empTest2.hashCode());
 	}
 	
-//--------------Testes Equals--------------//
 	@Test
 	public void deve_apontar_igualdade_de_objetos_utilizando_equals() {
 		String cnpj = empTest.getCnpj();
@@ -131,7 +118,7 @@ public class EmpresaTest {
 	
 	@Test
 	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals() {
-		String cnpj = "45871236954252";
+		String cnpj = "76514162000100";
 		String razaoSocial = empTest.getRazaoSocial();
 		String nomeFantasia = empTest.getNomeFantasia();
 		String areaAtuacao = empTest.getAreaAtuacao();
@@ -142,73 +129,6 @@ public class EmpresaTest {
 		assertFalse(empTest.equals(empTest2));
 	}
 	
-	
-	@Test
-	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals2() {
-		String cnpj = empTest.getCnpj();
-		String razaoSocial = "Sociedade Esportiva Palmeiras";
-		String nomeFantasia = empTest.getNomeFantasia();
-		String areaAtuacao = empTest.getAreaAtuacao();
-		String telefone = empTest.getTelefone();
-		String numeroFuncionarios = empTest.getNumeroFuncionarios();
-		Empresa empTest2 = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, telefone, numeroFuncionarios);
-		assertFalse(empTest.equals(empTest2));
-	}
-	
-	@Test
-	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals3() {
-		String cnpj = empTest.getCnpj();
-		String razaoSocial = empTest.getRazaoSocial();
-		String nomeFantasia = "Palmeiras";
-		String areaAtuacao = empTest.getAreaAtuacao();
-		String telefone = empTest.getTelefone();
-		String numeroFuncionarios = empTest.getNumeroFuncionarios();
-		Empresa empTest2 = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, telefone, numeroFuncionarios);
-		assertFalse(empTest.equals(empTest2));
-	}
-	
-	@Test
-	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals4() {
-		String cnpj = empTest.getCnpj();
-		String razaoSocial = empTest.getRazaoSocial();
-		String nomeFantasia = empTest.getNomeFantasia();
-		String areaAtuacao = "Nenhuma";
-		String telefone = empTest.getTelefone();
-		String numeroFuncionarios = empTest.getNumeroFuncionarios();
-		Empresa empTest2 = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, telefone, numeroFuncionarios);
-		assertFalse(empTest.equals(empTest2));
-	}
-	
-	@Test
-	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals5() {
-		String cnpj = empTest.getCnpj();
-		String razaoSocial = empTest.getRazaoSocial();
-		String nomeFantasia = empTest.getNomeFantasia();
-		String areaAtuacao = empTest.getAreaAtuacao();
-		String telefone = "1156987425";
-		String numeroFuncionarios = empTest.getNumeroFuncionarios();
-		Empresa empTest2 = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, telefone, numeroFuncionarios);
-		assertFalse(empTest.equals(empTest2));
-	}
-	
-	@Test
-	public void nao_deve_apontar_igualdade_de_objetos_utilizando_equals6() {
-		String cnpj = empTest.getCnpj();
-		String razaoSocial = empTest.getRazaoSocial();
-		String nomeFantasia = empTest.getNomeFantasia();
-		String areaAtuacao = empTest.getAreaAtuacao();
-		String telefone = empTest.getTelefone();
-		String numeroFuncionarios = "52";
-		Empresa empTest2 = new Empresa (cnpj, razaoSocial, nomeFantasia, 
-									areaAtuacao, telefone, numeroFuncionarios);
-		assertFalse(empTest.equals(empTest2));
-	}
-	
-//--------------Testes Cnpj--------------//
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_cnpj_nulo() {
 		empTest.setCnpj(null);
@@ -218,13 +138,13 @@ public class EmpresaTest {
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_cnpj_vazio() {
 		empTest.setCnpj("");
-		assertNotNull("should not be invalid", empTest.getCnpj());
+		assertNotNull("should not be empty", empTest.getCnpj());
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_cnpj_em_branco() {
 		empTest.setCnpj(" ");
-		assertNotNull("should not be empty", empTest.getCnpj());
+		assertNotNull("should not be blank", empTest.getCnpj());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -328,7 +248,6 @@ public class EmpresaTest {
 		empTest.setCnpj("67230875000150");
 	}
 	
-//--------------Testes Razão Social--------------//
 	@Test
 	public void deve_aceitar_razao_social_valida() {
 		empTest.setRazaoSocial("Sport Clube Corinthians Paulista");
@@ -343,13 +262,13 @@ public class EmpresaTest {
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_razaoSocial_vazio() {
 		empTest.setRazaoSocial("");
-		assertNotNull("should not be invalid", empTest.getRazaoSocial());
+		assertNotNull("should not be empty", empTest.getRazaoSocial());
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_razaoSocial_em_branco() {
 		empTest.setRazaoSocial(" ");
-		assertNotNull("should not be empty", empTest.getRazaoSocial());
+		assertNotNull("should not be blank", empTest.getRazaoSocial());
 	}
 	
 	@Test
@@ -362,7 +281,6 @@ public class EmpresaTest {
 		assertThat(empTest.getRazaoSocial(), is(not("Sociedade Esportiva Palmeiras")));
 	}
 	
-//--------------Testes Nome Fantasia--------------//
 	@Test
 	public void deve_aceitar_nome_fantasia_valido() {
 		empTest.setNomeFantasia("Corinthians");
@@ -376,14 +294,14 @@ public class EmpresaTest {
 	
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_nomeFantasia_vazio() {
-		empTest.setRazaoSocial("");
-		assertNotNull("should not be invalid", empTest.getRazaoSocial());
+		empTest.setNomeFantasia("");
+		assertNotNull("should not be empty", empTest.getRazaoSocial());
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_nomeFantasia_invalido() {
 		empTest.setNomeFantasia(" ");
-		assertNotNull("should not be empty", empTest.getNomeFantasia());
+		assertNotNull("should not be blank", empTest.getNomeFantasia());
 	}
 	
 	@Test
@@ -396,7 +314,6 @@ public class EmpresaTest {
 		assertThat(empTest.getNomeFantasia(), is(not("Palmeiras")));
 	}
 	
-//--------------Testes Área de atuação--------------//
 	@Test
 	public void deve_aceitar_area_atuacao_valido() {
 		empTest.setAreaAtuacao("Futebol");
@@ -417,7 +334,7 @@ public class EmpresaTest {
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_areaAtuacao_invalido() {
 		empTest.setAreaAtuacao(" ");
-		assertNotNull("should not be invalid", empTest.getAreaAtuacao());
+		assertNotNull("should not be blank", empTest.getAreaAtuacao());
 	}
 	
 	@Test
@@ -430,7 +347,6 @@ public class EmpresaTest {
 		assertThat(empTest.getAreaAtuacao(), is(not("Aviação")));
 	}
 	
-//--------------Testes Telefone--------------//
 	@Test
 	public void deve_aceitar_telefone_valido() {
 		empTest.setTelefone("1122578946");
@@ -450,7 +366,7 @@ public class EmpresaTest {
 	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_telefone_invalido() {
 		empTest.setTelefone(" ");
-		assertNotNull("should not be invalid", empTest.getTelefone());
+		assertNotNull("should not be blank", empTest.getTelefone());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -478,16 +394,25 @@ public class EmpresaTest {
 		assertThat(empTest.getTelefone(), is(not("1120953001")));
 	}
 	
-//--------------Testes Número de Funcionários--------------//
 	@Test
 	public void deve_aceitar_numeroFuncionarios_valido() {
 		empTest.setNumeroFuncionarios("45");
 	}
 	
 	@Test(expected = NullPointerException.class)
+    public void nao_deve_aceitar_numumeroFuncionarios_nulo() {
+        empTest.setNumeroFuncionarios(null);
+    }
+	
+	@Test(expected = NullPointerException.class)
 	public void nao_deve_aceitar_numumeroFuncionarios_vazio() {
 		empTest.setNumeroFuncionarios("");
 	}
+	
+	@Test(expected = NullPointerException.class)
+    public void nao_deve_aceitar_numumeroFuncionarios_em_branco() {
+        empTest.setNumeroFuncionarios(" ");
+    }
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_numeroFuncionarios_com_letras() {
