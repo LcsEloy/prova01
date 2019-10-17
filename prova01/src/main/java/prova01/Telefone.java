@@ -3,10 +3,10 @@ package prova01;
 public class Telefone {
     
     private Integer ddd;
-    private Long numero;
+    private Integer numero;
     private String tipo;
     
-    public Telefone(Integer ddd, Long numero, String tipo) {
+    public Telefone(Integer ddd, Integer numero, String tipo) {
         this.ddd = setDdd(ddd);
         this.numero = setNumero(numero);
         this.tipo = setTipo(tipo);
@@ -18,10 +18,10 @@ public class Telefone {
     public Integer setDdd(Integer ddd) {
         return this.ddd = ddd;
     }
-    public Long getNumero() {
+    public Integer getNumero() {
         return numero;
     }
-    public Long setNumero(Long numero) {
+    public Integer setNumero(Integer numero) {
         return this.numero = numero;
     }
     public String getTipo() {
@@ -37,5 +37,26 @@ public class Telefone {
             throw new NullPointerException("O Tipo não deve ser nulo ou vazio.");
         }
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Telefone other = (Telefone) obj;
+        if (!numero.equals(other.numero))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + numero.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + ddd + ") " + numero + " / Tipo: " + tipo;
+    }  
     
 }

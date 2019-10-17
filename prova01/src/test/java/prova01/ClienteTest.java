@@ -30,11 +30,11 @@ public class ClienteTest {
         String nome = "Lucas";
         String sobrenome = "Eloy";
         String email = "lucaseloy@gmail.com";
-        String cpf = "1458746445";
-        String id = "12";
+        Telefone telefone = new Telefone (11, 29871764, "casa"); 
+        String cpf = "41779801882";
         String login = "lcseloy";
         String senha = "123456";
-        clienteTest = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
+        clienteTest = new Cliente(nome, sobrenome, email, cpf, telefone, login, senha);
     }
 
     @After
@@ -58,34 +58,16 @@ public class ClienteTest {
         System.out.println(clienteTest);
     }
     
-    @Ignore
-    @Test
-    public void deve_ignorar_este_teste() {
-        System.out.println("Isso não deve ser impresso!");
-    }
-    
-    @Test (timeout = 100)
-    public void nao_deve_exceder_o_tempo_proposto() {
-        String nome = "Lucas";
-        String sobrenome = "Eloy";
-        String email = "lucaseloy@gmail.com";
-        String cpf = "1458746445";
-        String id = "12";
-        String login = "lcseloy";
-        String senha = "123456";
-        clienteTest = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
-    }
-    
     @Test
     public void deve_apontar_igualdade_de_objetos_utilizando_hashcode() {
         String nome = clienteTest.getNome();
         String sobrenome = clienteTest.getSobrenome();
         String email = clienteTest.getEmail();
         String cpf = clienteTest.getCpf();
-        String id = clienteTest.getId();
+        Telefone telefone = new Telefone (11, 29871764, "casa");
         String login = clienteTest.getLogin();
         String senha = clienteTest.getSenha();
-        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
+        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, telefone, login, senha);
         assertEquals(clienteTest.hashCode(), clienteTest2.hashCode());
     }
     
@@ -94,11 +76,11 @@ public class ClienteTest {
         String nome = clienteTest.getNome();
         String sobrenome = clienteTest.getSobrenome();
         String email = clienteTest.getEmail();
-        String cpf = clienteTest.getCpf();
-        String id = clienteTest.getId();
+        String cpf = ("86753910050");
+        Telefone telefone = new Telefone (11, 29871764, "casa");
         String login = clienteTest.getLogin();
         String senha = clienteTest.getSenha();
-        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
+        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, telefone, login, senha);
         assertNotEquals(clienteTest.hashCode(), clienteTest2.hashCode());
     }
     
@@ -108,10 +90,10 @@ public class ClienteTest {
         String sobrenome = clienteTest.getSobrenome();
         String email = clienteTest.getEmail();
         String cpf = clienteTest.getCpf();
-        String id = clienteTest.getId();
+        Telefone telefone = new Telefone (11, 29871764, "casa");
         String login = clienteTest.getLogin();
         String senha = clienteTest.getSenha();
-        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
+        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, telefone, login, senha);
         assertTrue(clienteTest.equals(clienteTest2));
     }
     
@@ -120,11 +102,11 @@ public class ClienteTest {
         String nome = clienteTest.getNome();
         String sobrenome = clienteTest.getSobrenome();
         String email = clienteTest.getEmail();
-        String cpf = clienteTest.getCpf();
-        String id = clienteTest.getId();
+        String cpf = ("86753910050");
+        Telefone telefone = new Telefone (11, 29871764, "casa");
         String login = clienteTest.getLogin();
         String senha = clienteTest.getSenha();
-        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, id, login, senha);
+        Cliente clienteTest2 = new Cliente(nome, sobrenome, email, cpf, telefone, login, senha);
         assertFalse(clienteTest.equals(clienteTest2));
     }
     

@@ -2,6 +2,10 @@ package prova01;
 
 public class Endereco {
 
+    private static final int NUMERO_MAXIMO_DE_CASAS_LETRAS_UF = 2;
+
+    private static final int NUMERO_MAXIMO_DE_CASAS_NUMERO_CEP = 8;
+
     private String logradouro;
 
     private String bairro;
@@ -63,7 +67,7 @@ public class Endereco {
     }
 
     private void verificaCepTamanhoCorreto(String cep) {
-        if (cep.length() != 8) {
+        if (cep.length() != NUMERO_MAXIMO_DE_CASAS_NUMERO_CEP) {
             throw new IllegalArgumentException("O Cep deve conter 8 dígitos.");
         }
     }
@@ -116,7 +120,7 @@ public class Endereco {
     }
 
     private void verificaUfTamanhoCorreto(String uf) {
-        if (uf.length() != 2) {
+        if (uf.length() != NUMERO_MAXIMO_DE_CASAS_LETRAS_UF) {
             throw new IllegalArgumentException("A UF deve conter dois dígitos.");
         }
     }

@@ -1,5 +1,8 @@
 package prova01;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Pessoa {
 
     private String nome;
@@ -10,7 +13,7 @@ public class Pessoa {
 
     private String cpf;
 
-    private Telefone telefone;
+    protected Telefone telefone;
 
     public Pessoa(String nome, String sobrenome, String email, String cpf, Telefone telefone) {
         this.nome = setNome(nome);
@@ -33,13 +36,13 @@ public class Pessoa {
     }
 
     private void verificaNomeNuloOuEmBranco(String nome) {
-        if(nome == null || nome.isEmpty() || nome.equals(" ")) {
+        if (nome == null || nome.isEmpty() || nome.equals(" ")) {
             throw new NullPointerException("O Nome não deve ser nulo ou vazio.");
         }
     }
 
     private void verificaNomeTamanhoValido(String nome) {
-        if(nome.length() > 15) {
+        if (nome.length() > 15) {
             throw new IllegalArgumentException("O nome contém muitos caracteres.");
         }
     }
@@ -78,13 +81,13 @@ public class Pessoa {
     }
 
     private void verificaSobrenomeNuloOuEmBranco(String sobrenome) {
-        if(sobrenome == null || sobrenome.isEmpty() || sobrenome.equals(" ")) {
+        if (sobrenome == null || sobrenome.isEmpty() || sobrenome.equals(" ")) {
             throw new NullPointerException("O sobrenome não deve ser nulo ou vazio.");
         }
     }
 
     private void verificaSobrenomeTamanhoValido(String sobrenome) {
-        if(sobrenome.length() > 30) {
+        if (sobrenome.length() > 30) {
             throw new IllegalArgumentException("O sobrenome contém muitos caracteres.");
         }
     }
@@ -115,10 +118,32 @@ public class Pessoa {
     }
 
     public String setEmail(String email) {
+        verificaEmailNuloOuEmBranco(email);
+        verificaEmailValido(email);
+        return this.email = email;
+    }
+
+    private void verificaEmailValido(String email) {
+        if (!isEmailValido(email)) {
+            throw new IllegalArgumentException("Email inválido.");
+        }
+    }
+
+    private void verificaEmailNuloOuEmBranco(String email) {
         if (email == null || email.isEmpty() || email.equals(" ")) {
             throw new NullPointerException("O Email não deve ser nulo ou vazio.");
         }
-        return this.email = email;
+    }
+
+    public static boolean isEmailValido(String email) {
+        boolean emailValido = false;
+        String enderecoEmailValido = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern modeloEmail = Pattern.compile(enderecoEmailValido, Pattern.CASE_INSENSITIVE);
+        Matcher validaCombinacao = modeloEmail.matcher(email);
+        if (validaCombinacao.matches()) {
+            emailValido = true;
+        }
+        return emailValido;
     }
 
     public String getCpf() {
@@ -126,18 +151,19 @@ public class Pessoa {
     }
 
     public String setCpf(String cpf) {
-        if (cpf == null || cpf.isEmpty() || cpf.equals(" ")) {
-            throw new NullPointerException("O CPF não deve ser nulo ou vazio.");
-        }
+        verificaCpfInvalido(cpf);
+        verificaCpfValido(cpf);
         return this.cpf = cpf;
     }
 
-    public Telefone getTelefone() {
-        return telefone;
+    private void verificaCpfInvalido(String cpf) {
+        if (!ValidadorCpfCnpj.isCpfValido(cpf)) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
     }
 
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
+    private void verificaCpfValido(String cpf) {
+        ValidadorCpfCnpj.isCpfValido(cpf);
     }
 
     @Override
@@ -158,7 +184,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Dados da Pessoa: " + "\nNome: " + nome + "\nSobrenome: " + sobrenome + "\nEmail: " + email + "\nCpf: " + cpf + "\nTelefone: " + telefone;
+        return "Dados da Pessoa: " + "\nNome: " + nome + "\nSobrenome: " + sobrenome + "\nEmail: " + email + "\nCpf: " + cpf + "\nTelefone: " + telefone.toString();
     }
 
 }

@@ -2,9 +2,9 @@ package prova01;
 
 public class Empresa {
 
-    private static final int TAMANHO_NUMERO_TELEFONE = 10;
+    private static final int NUMERO_MAXIMO_DE_CASAS_PARA_NUMERO_FUNCIONARIOS = 6;
 
-    private static final int TAMANHO_PADRAO_DIGITOS_CNPJ = 14;
+    private static final int TAMANHO_NUMERO_TELEFONE = 10;
 
     private String cnpj;
 
@@ -32,98 +32,19 @@ public class Empresa {
     }
 
     public String setCnpj(String cnpj) {
-        verificaCnpjNuloOuEmBranco(cnpj);
-        verificaCnpjApenasNumeros(cnpj);
-        verificaCnpjTamanhoValido(cnpj);
-        verificaCnpjComNumerosIguais(cnpj);
+        verificaCnpjInvalido(cnpj);
         verificaCnpjValido(cnpj);
         return this.cnpj = cnpj;
     }
 
     private void verificaCnpjValido(String cnpj) {
-        if (!isCnpjValido(cnpj)) {
-            throw new IllegalArgumentException("Cnpj inválido.");
-        }
+        ValidadorCpfCnpj.isCnpjValido(cnpj);
     }
 
-    private void verificaCnpjComNumerosIguais(String cnpj) {
-        if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111") || cnpj.equals("22222222222222") || cnpj.equals("33333333333333") || cnpj.equals("44444444444444") ||
-            cnpj.equals("55555555555555") || cnpj.equals("66666666666666") || cnpj.equals("77777777777777") || cnpj.equals("88888888888888") || cnpj.equals("99999999999999")) {
-            throw new IllegalArgumentException("O Cnpj Não pode ser composto por números iguais.");
+    private void verificaCnpjInvalido(String cnpj) {
+        if (!ValidadorCpfCnpj.isCnpjValido(cnpj)) {
+            throw new IllegalArgumentException("CNPJ inválido");
         }
-    }
-
-    private void verificaCnpjTamanhoValido(String cnpj) {
-        if (cnpj.length() != TAMANHO_PADRAO_DIGITOS_CNPJ) {
-            throw new IllegalArgumentException("O Cnpj Deve conter 14 dígitos.");
-        }
-    }
-
-    private void verificaCnpjApenasNumeros(String cnpj) {
-        for(int i = 0 ; i < cnpj.length() ; i++) {
-            if (!Character.isDigit(cnpj.charAt(i))) {
-                throw new IllegalArgumentException("O Cnpj Deve ser composto apenas por números.");
-            }
-        }
-    }
-
-    private void verificaCnpjNuloOuEmBranco(String cnpj) {
-        if (cnpj == null || cnpj.isEmpty() || cnpj.equals(" ")) {
-            throw new NullPointerException("O CNPJ não deve ser nulo ou vazio.");
-        }
-    }
-
-    private boolean isCnpjValido(String cnpj) {
-
-        char primeiroDigitoVerificador;
-
-        char segundoDigitoVerificador;
-
-        int soma;
-
-        int i;
-
-        int resultado;
-
-        int numeroCnpj;
-
-        int peso;
-
-        soma = 0;
-        peso = 2;
-        for(i = 11 ; i >= 0 ; i--) {
-            numeroCnpj = (cnpj.charAt(i) - 48);
-            soma = soma + (numeroCnpj * peso);
-            peso = peso + 1;
-            if (peso == 10) {
-                peso = 2;
-            }
-        }
-        resultado = soma % 11;
-        if ((resultado == 0) || (resultado == 1)) {
-            primeiroDigitoVerificador = '0';
-        } else
-            primeiroDigitoVerificador = (char) ((11 - resultado) + 48);
-        soma = 0;
-        peso = 2;
-        for(i = 12 ; i >= 0 ; i--) {
-            numeroCnpj = (cnpj.charAt(i) - 48);
-            soma = soma + (numeroCnpj * peso);
-            peso = peso + 1;
-            if (peso == 10) {
-                peso = 2;
-            }
-        }
-        resultado = soma % 11;
-        if ((resultado == 0) || (resultado == 1)) {
-            segundoDigitoVerificador = '0';
-        } else
-            segundoDigitoVerificador = (char) ((11 - resultado) + 48);
-        if ((primeiroDigitoVerificador == cnpj.charAt(12)) && (segundoDigitoVerificador == cnpj.charAt(13))) {
-            return (true);
-        } else
-            return (false);
-
     }
 
     public String getRazaoSocial() {
@@ -160,7 +81,7 @@ public class Empresa {
         return areaAtuacao;
     }
 
-    public String setAreaAtuacao(String areaAtuacao) {     
+    public String setAreaAtuacao(String areaAtuacao) {
         verificaAreaAtuacaoNulaOuEmBranco(areaAtuacao);
         return this.areaAtuacao = areaAtuacao;
     }
@@ -215,7 +136,7 @@ public class Empresa {
     }
 
     private void verificaNumeroFuncionariosValido(String numeroFuncionarios) {
-        if (numeroFuncionarios.length() > 6) {
+        if (numeroFuncionarios.length() > NUMERO_MAXIMO_DE_CASAS_PARA_NUMERO_FUNCIONARIOS) {
             throw new IllegalArgumentException("Número de funcionários inválido");
         }
     }
@@ -248,7 +169,7 @@ public class Empresa {
             return false;
         return true;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -256,7 +177,7 @@ public class Empresa {
         result = prime * result + cnpj.hashCode();
         return result;
     }
-    
+
     @Override
     public String toString() {
         return "Dados da Empresa: " + "\nCNPJ: " + cnpj + "\nRazão Social: " + razaoSocial + "\nNome Fantasia: " + nomeFantasia + "\nÁrea de Atuação: " + areaAtuacao + "\nTelefone: " + telefone +
