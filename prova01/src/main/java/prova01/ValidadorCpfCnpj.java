@@ -11,13 +11,13 @@ public class ValidadorCpfCnpj {
     private static final int[] PESO_DE_CADA_DIGITO_PARA_CALCULO_CPNJ = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
     private static int calcularDigito(String str, int[] peso) {
-        int soma = 0;
-        for(int indice = str.length() - 1, digito ; indice >= 0 ; indice--) {
-            digito = Integer.parseInt(str.substring(indice, indice + 1));
-            soma += digito * peso[peso.length - str.length() + indice];
+        int somaDigitosCpfCnpj = 0;
+        for(int indice = str.length() - 1, digitoDocumento ; indice >= 0 ; indice--) {
+            digitoDocumento = Integer.parseInt(str.substring(indice, indice + 1));
+            somaDigitosCpfCnpj += digitoDocumento * peso[peso.length - str.length() + indice];
         }
-        soma = 11 - soma % 11;
-        return soma > 9 ? 0 : soma;
+        somaDigitosCpfCnpj = 11 - somaDigitosCpfCnpj % 11;
+        return somaDigitosCpfCnpj > 9 ? 0 : somaDigitosCpfCnpj;
     }
 
     public static boolean isCpfValido(String cpf) {

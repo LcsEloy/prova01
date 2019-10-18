@@ -13,8 +13,11 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PessoaTest {
 
     private Pessoa pessoaTest;
@@ -30,7 +33,7 @@ public class PessoaTest {
         String sobrenome = "Eloy";
         String email = "lucas.silva@contmatic.com.br";
         String cpf = "41779801882";
-        Telefone telefone = new Telefone(11, 29871764, "casa");
+        Telefone telefone = new Telefone(11, 981549141, "Celular");
         pessoaTest = new Pessoa(nome, sobrenome, email, cpf, telefone);
     }
 
@@ -72,7 +75,7 @@ public class PessoaTest {
         String sobrenome = pessoaTest.getSobrenome();
         String email = pessoaTest.getEmail();
         String cpf = "86753910050";
-        Telefone telefone = null;
+        Telefone telefone = new Telefone(11, 29871764, "casa");
         Pessoa pessoaTest2 = new Pessoa(nome, sobrenome, email, cpf, telefone);
         assertNotEquals(pessoaTest.hashCode(), pessoaTest2.hashCode());
     }
@@ -83,7 +86,7 @@ public class PessoaTest {
         String sobrenome = pessoaTest.getSobrenome();
         String email = pessoaTest.getEmail();
         String cpf = pessoaTest.getCpf();
-        Telefone telefone = null;
+        Telefone telefone = new Telefone(11, 29871764, "casa");
         Pessoa pessoaTest2 = new Pessoa(nome, sobrenome, email, cpf, telefone);
         assertTrue(pessoaTest.equals(pessoaTest2));
     }
@@ -94,7 +97,7 @@ public class PessoaTest {
         String sobrenome = pessoaTest.getSobrenome();
         String email = pessoaTest.getEmail();
         String cpf = "86753910050";
-        Telefone telefone = null;
+        Telefone telefone = new Telefone(11, 29871764, "casa");
         Pessoa pessoaTest2 = new Pessoa(nome, sobrenome, email, cpf, telefone);
         assertFalse(pessoaTest.equals(pessoaTest2));
     }
@@ -108,7 +111,7 @@ public class PessoaTest {
     @Test(expected = NullPointerException.class)
     public void nao_deve_aceitar_nome_vazio() {
         pessoaTest.setNome("");
-        assertNotNull("should not be pessoaty", pessoaTest.getNome());
+        assertNotNull("should not be empty", pessoaTest.getNome());
     }
 
     @Test(expected = NullPointerException.class)
@@ -162,7 +165,7 @@ public class PessoaTest {
     @Test(expected = NullPointerException.class)
     public void nao_deve_aceitar_sobrenome_vazio() {
         pessoaTest.setSobrenome("");
-        assertNotNull("should not be pessoaty", pessoaTest.getSobrenome());
+        assertNotNull("should not be empty", pessoaTest.getSobrenome());
     }
 
     @Test(expected = NullPointerException.class)
@@ -220,7 +223,7 @@ public class PessoaTest {
     @Test(expected = NullPointerException.class)
     public void nao_deve_aceitar_email_vazio() {
         pessoaTest.setEmail("");
-        assertNotNull("should not be pessoaty", pessoaTest.getEmail());
+        assertNotNull("should not be empty", pessoaTest.getEmail());
     }
 
     @Test(expected = NullPointerException.class)
@@ -248,7 +251,7 @@ public class PessoaTest {
     @Test(expected = NullPointerException.class)
     public void nao_deve_aceitar_cpf_vazio() {
         pessoaTest.setCpf("");
-        assertNotNull("should not be vazio", pessoaTest.getCpf());
+        assertNotNull("should not be empty", pessoaTest.getCpf());
     }
 
     @Test(expected = NullPointerException.class)

@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class Pessoa {
 
+    private static final int TAMANHO_MAXIMO_SOBRENOME = 30;
+
+    private static final int TAMANHO_MAXIMO_NOME = 15;
+
     private String nome;
 
     private String sobrenome;
@@ -42,7 +46,7 @@ public class Pessoa {
     }
 
     private void verificaNomeTamanhoValido(String nome) {
-        if (nome.length() > 15) {
+        if (nome.length() > TAMANHO_MAXIMO_NOME) {
             throw new IllegalArgumentException("O nome contém muitos caracteres.");
         }
     }
@@ -87,7 +91,7 @@ public class Pessoa {
     }
 
     private void verificaSobrenomeTamanhoValido(String sobrenome) {
-        if (sobrenome.length() > 30) {
+        if (sobrenome.length() > TAMANHO_MAXIMO_SOBRENOME) {
             throw new IllegalArgumentException("O sobrenome contém muitos caracteres.");
         }
     }
