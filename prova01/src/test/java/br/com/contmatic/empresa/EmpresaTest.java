@@ -33,7 +33,7 @@ public class EmpresaTest {
         String razaoSocial = "Sport Clube Corinthians Paulista";
         String nomeFantasia = "Corinthians";
         String areaAtuacao = "Futebol";
-        String telefone = "1120953000";
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = "45";
         empTest = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
     }
@@ -71,7 +71,7 @@ public class EmpresaTest {
         String razaoSocial = "Sport Clube Corinthians Paulista";
         String nomeFantasia = "Corinthians";
         String areaAtuacao = "Futebol";
-        String telefone = "1120953000";
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = "45";
         empTest = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
     }
@@ -82,7 +82,7 @@ public class EmpresaTest {
         String razaoSocial = empTest.getRazaoSocial();
         String nomeFantasia = empTest.getNomeFantasia();
         String areaAtuacao = empTest.getAreaAtuacao();
-        String telefone = empTest.getTelefone();
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = empTest.getNumeroFuncionarios();
         Empresa empTest2 = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
         assertEquals(empTest.hashCode(), empTest2.hashCode());
@@ -94,7 +94,7 @@ public class EmpresaTest {
         String razaoSocial = empTest.getRazaoSocial();
         String nomeFantasia = empTest.getNomeFantasia();
         String areaAtuacao = empTest.getAreaAtuacao();
-        String telefone = empTest.getTelefone();
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = empTest.getNumeroFuncionarios();
         Empresa empTest2 = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
         assertNotEquals(empTest.hashCode(), empTest2.hashCode());
@@ -106,7 +106,7 @@ public class EmpresaTest {
         String razaoSocial = empTest.getRazaoSocial();
         String nomeFantasia = empTest.getNomeFantasia();
         String areaAtuacao = empTest.getAreaAtuacao();
-        String telefone = empTest.getTelefone();
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = empTest.getNumeroFuncionarios();
         Empresa empTest2 = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
         assertTrue(empTest.equals(empTest2));
@@ -118,7 +118,7 @@ public class EmpresaTest {
         String razaoSocial = empTest.getRazaoSocial();
         String nomeFantasia = empTest.getNomeFantasia();
         String areaAtuacao = empTest.getAreaAtuacao();
-        String telefone = empTest.getTelefone();
+        Telefone telefone = new Telefone(11, 20953000, "Comercial");
         String numeroFuncionarios = empTest.getNumeroFuncionarios();
         Empresa empTest2 = new Empresa(cnpj, razaoSocial, nomeFantasia, areaAtuacao, telefone, numeroFuncionarios);
         assertFalse(empTest.equals(empTest2));
@@ -330,54 +330,6 @@ public class EmpresaTest {
     @Test
     public void nao_deve_apontar_igualdade_areaAtuacao() {
         assertThat(empTest.getAreaAtuacao(), is(not("Aviação")));
-    }
-
-    @Test
-    public void deve_aceitar_telefone_valido() {
-        empTest.setTelefone("1122578946");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_nulo() {
-        empTest.setTelefone(null);
-        assertNotNull("should not be null", empTest.getTelefone());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_vazio() {
-        empTest.setTelefone("");
-        assertNotNull("should not be empty", empTest.getTelefone());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_invalido() {
-        empTest.setTelefone(" ");
-        assertNotNull("should not be blank", empTest.getTelefone());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_com_menos_que_10_digitos() {
-        empTest.setTelefone("112095300");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_com_mais_que_10_digitos() {
-        empTest.setTelefone("11209530000");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_aceitar_telefone_com_letras() {
-        empTest.setTelefone("XXXXXXXXXX");
-    }
-
-    @Test
-    public void deve_apontar_igualdade_telefone() {
-        assertEquals("1120953000", empTest.getTelefone());
-    }
-
-    @Test
-    public void nao_deve_apontar_igualdade_telefone() {
-        assertThat(empTest.getTelefone(), is(not("1120953001")));
     }
 
     @Test

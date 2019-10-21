@@ -4,8 +4,6 @@ public class Empresa {
 
     private static final int NUMERO_MAXIMO_DE_CASAS_PARA_NUMERO_FUNCIONARIOS = 6;
 
-    private static final int TAMANHO_NUMERO_TELEFONE = 10;
-
     private String cnpj;
 
     private String razaoSocial;
@@ -14,16 +12,16 @@ public class Empresa {
 
     private String areaAtuacao;
 
-    private String telefone;
+    private Telefone telefone;
 
     private String numeroFuncionarios;
 
-    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, String areaAtuacao, String telefone, String numeroFuncionarios) {
+    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, String areaAtuacao, Telefone telefone, String numeroFuncionarios) {
         this.cnpj = setCnpj(cnpj);
         this.razaoSocial = setRazaoSocial(razaoSocial);
         this.nomeFantasia = setNomeFantasia(nomeFantasia);
         this.areaAtuacao = setAreaAtuacao(areaAtuacao);
-        this.telefone = setTelefone(telefone);
+        this.telefone = telefone;
         this.numeroFuncionarios = setNumeroFuncionarios(numeroFuncionarios);
     }
 
@@ -89,37 +87,6 @@ public class Empresa {
     private void verificaAreaAtuacaoNulaOuEmBranco(String areaAtuacao) {
         if (areaAtuacao == null || areaAtuacao.isEmpty() || areaAtuacao.equals(" ")) {
             throw new IllegalArgumentException("A Área de Atuação não deve ser nula ou vazia.");
-        }
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String setTelefone(String telefone) {
-        verificaTelefoneNuloOuEmBranco(telefone);
-        verificaTelefoneApenasNumeros(telefone);
-        verificaTamanhoTelefoneValido(telefone);
-        return this.telefone = telefone;
-    }
-
-    private void verificaTamanhoTelefoneValido(String telefone) {
-        if (telefone.length() != TAMANHO_NUMERO_TELEFONE) {
-            throw new IllegalArgumentException("O Telefone deve conter 10 (xx)xxxx-xxxx dígitos.");
-        }
-    }
-
-    private void verificaTelefoneApenasNumeros(String telefone) {
-        for(int i = 0 ; i < telefone.length() ; i++) {
-            if (!Character.isDigit(telefone.charAt(i))) {
-                throw new IllegalArgumentException("O Telefone deve ser composto apenas por números.");
-            }
-        }
-    }
-
-    private void verificaTelefoneNuloOuEmBranco(String telefone) {
-        if (telefone == null || telefone.isEmpty() || telefone.equals(" ")) {
-            throw new IllegalArgumentException("O Telefone não deve ser nulo ou vazio.");
         }
     }
 

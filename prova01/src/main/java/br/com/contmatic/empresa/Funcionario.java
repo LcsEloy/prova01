@@ -19,7 +19,7 @@ public class Funcionario {
 
     private String cpf;
 
-    protected Telefone telefone;
+    private Telefone telefone;
 
     private String cargo;
 

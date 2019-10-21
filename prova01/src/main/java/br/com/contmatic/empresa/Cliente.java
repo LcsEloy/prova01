@@ -19,7 +19,7 @@ public class Cliente {
 
     private String cpf;
 
-    protected Telefone telefone;
+    private Telefone telefone;
 
     public Cliente(String nome, String sobrenome, String email, String cpf, Telefone telefone) {
         this.nome = setNome(nome);
