@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 public class Empresa {
 
@@ -58,7 +58,7 @@ public class Empresa {
 
     private void verificaRazaoSocialNulaOuEmBranco(String razaoSocial) {
         if (razaoSocial == null || razaoSocial.isEmpty() || razaoSocial.equals(" ")) {
-            throw new NullPointerException("A Razão Social não deve ser nula ou vazia.");
+            throw new IllegalArgumentException("A Razão Social não deve ser nula ou vazia.");
         }
     }
 
@@ -73,7 +73,7 @@ public class Empresa {
 
     private void verificaNomeFantasiaNuloOuEmBranco(String nomeFantasia) {
         if (nomeFantasia == null || nomeFantasia.isEmpty() || nomeFantasia.equals(" ")) {
-            throw new NullPointerException("O Nome Fantasia não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Nome Fantasia não deve ser nulo ou vazio.");
         }
     }
 
@@ -88,7 +88,7 @@ public class Empresa {
 
     private void verificaAreaAtuacaoNulaOuEmBranco(String areaAtuacao) {
         if (areaAtuacao == null || areaAtuacao.isEmpty() || areaAtuacao.equals(" ")) {
-            throw new NullPointerException("A Área de Atuação não deve ser nula ou vazia.");
+            throw new IllegalArgumentException("A Área de Atuação não deve ser nula ou vazia.");
         }
     }
 
@@ -119,7 +119,7 @@ public class Empresa {
 
     private void verificaTelefoneNuloOuEmBranco(String telefone) {
         if (telefone == null || telefone.isEmpty() || telefone.equals(" ")) {
-            throw new NullPointerException("O Telefone não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Telefone não deve ser nulo ou vazio.");
         }
     }
 
@@ -158,7 +158,7 @@ public class Empresa {
 
     private void verificaNumeroFuncionariosVazioOuEmBranco(String numeroFuncionarios) {
         if (numeroFuncionarios == null || numeroFuncionarios.isEmpty() || numeroFuncionarios.equals(" ")) {
-            throw new NullPointerException("O Número de Funcionarios não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Número de Funcionarios não deve ser nulo ou vazio.");
         }
     }
 

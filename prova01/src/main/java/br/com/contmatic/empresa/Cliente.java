@@ -1,9 +1,9 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Funcionario {
+public class Cliente {
 
     private static final String FORMATO_DE_EMAIL_VALIDO = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
 
@@ -21,18 +21,12 @@ public class Funcionario {
 
     protected Telefone telefone;
 
-    private String cargo;
-
-    private Double salario;
-
-    public Funcionario(String nome, String sobrenome, String email, String cpf, Telefone telefone, String cargo, Double salario) {
+    public Cliente(String nome, String sobrenome, String email, String cpf, Telefone telefone) {
         this.nome = setNome(nome);
         this.sobrenome = setSobrenome(sobrenome);
         this.email = setEmail(email);
         this.cpf = setCpf(cpf);
         this.telefone = telefone;
-        this.cargo = setCargo(cargo);
-        this.salario = setSalario(salario);
     }
 
     public String getNome() {
@@ -49,7 +43,7 @@ public class Funcionario {
 
     private void verificaNomeNuloOuEmBranco(String nome) {
         if (nome == null || nome.isEmpty() || nome.equals(" ")) {
-            throw new NullPointerException("O Nome não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Nome não deve ser nulo ou vazio.");
         }
     }
 
@@ -103,7 +97,7 @@ public class Funcionario {
 
     private void verificaSobrenomeNuloOuEmBranco(String sobrenome) {
         if (sobrenome == null || sobrenome.isEmpty() || sobrenome.equals(" ")) {
-            throw new NullPointerException("O sobrenome não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O sobrenome não deve ser nulo ou vazio.");
         }
     }
 
@@ -147,7 +141,7 @@ public class Funcionario {
 
     private void verificaEmailNuloOuEmBranco(String email) {
         if (email == null || email.isEmpty() || email.equals(" ")) {
-            throw new NullPointerException("O Email não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Email não deve ser nulo ou vazio.");
         }
     }
 
@@ -187,72 +181,9 @@ public class Funcionario {
         ValidadorCpfCnpj.isCpfValido(cpf);
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public String setCargo(String cargo) {
-        verificaCargoNuloOuEmBranco(cargo);
-        verificaCargoLetrasIguais(cargo);
-        verificaCargoComNumeros(cargo);
-        return this.cargo = cargo;
-    }
-
-    private void verificaCargoComNumeros(String cargo) {
-        for(int i = 0 ; i < cargo.length() ; i++) {
-            if (Character.isDigit(cargo.charAt(i))) {
-                throw new IllegalArgumentException("O Cargo deve ser composto apenas por letras.");
-            }
-        }
-    }
-
-    private void verificaCargoNuloOuEmBranco(String cargo) {
-        if (cargo == null || cargo.isEmpty() || cargo.equals(" ")) {
-            throw new NullPointerException("O cargo não deve ser nulo ou vazio.");
-        }
-    }
-
-    private void verificaCargoLetrasIguais(String cargo) {
-        String temp = cargo.toLowerCase();
-        char primeiraLetra = temp.charAt(0);
-        int letrasRepetidas = 0;
-        letrasRepetidas = verificaLetrasRepetidas(cargo, temp, primeiraLetra, letrasRepetidas);
-        lancaExcecaoCasoLetrasForemRepetidas(cargo, letrasRepetidas);
-    }
-
-    private int verificaLetrasRepetidas(String cargo, String temp, char primeiraLetra, int letrasRepetidas) {
-        for(int i = 0 ; i < cargo.length() - 1 ; i++) {
-            if (primeiraLetra == temp.charAt(i + 1))
-                letrasRepetidas++;
-        }
-        return letrasRepetidas;
-    }
-
-    public Double getSalario() {
-        return salario;
-    }
-
-    public Double setSalario(Double salario) {
-        verificaSalarioNuloOuZerado(salario);
-        verificaSalarioNegativo(salario);
-        return this.salario = salario;
-    }
-
-    private void verificaSalarioNegativo(Double salario) {
-        if (salario <= 0) {
-            throw new IllegalArgumentException("O salário deve ser maior que 0.");
-        }
-    }
-
-    private void verificaSalarioNuloOuZerado(Double salario) {
-        if (salario == null || salario.equals(0.0)) {
-            throw new NullPointerException("O salário não deve ser nulo ou vazio.");
-        }
-    }
-
     @Override
     public boolean equals(Object obj) {
-        Funcionario other = (Funcionario) obj;
+        Cliente other = (Cliente) obj;
         if (!getCpf().equals(other.getCpf()))
             return false;
         return true;
@@ -268,8 +199,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Dados do Funcionario: " + "\nNome: " + getNome() + "\nSobrenome: " + getSobrenome() + "\nCargo: " + cargo + "\nSalário: " + salario + "\nEmail: " + getEmail() + "\nTelefone: " +
-            telefone;
+        return "Dados do Cliente: " + "\nNome: " + getNome() + "\nSobrenome: " + getSobrenome() + "\nEmail: " + getEmail() + "\nTelefone: " + telefone + "\nCpf: " + getCpf();
     }
 
 }

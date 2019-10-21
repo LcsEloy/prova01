@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -14,6 +14,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import br.com.contmatic.empresa.Cliente;
+import br.com.contmatic.empresa.Telefone;
 
 public class ClienteTest {
 
@@ -99,19 +102,19 @@ public class ClienteTest {
         assertFalse(clienteTest.equals(clienteTest2));
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_nulo() {
         clienteTest.setNome(null);
         assertNotNull("should not be null", clienteTest.getNome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_vazio() {
         clienteTest.setNome("");
         assertNotNull("should not be empty", clienteTest.getNome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_em_branco() {
         clienteTest.setNome(" ");
         assertNotNull("should not be blank", clienteTest.getNome());
@@ -153,19 +156,19 @@ public class ClienteTest {
         assertThat(clienteTest.getNome(), is(not("Grace")));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_nulo() {
         clienteTest.setSobrenome(null);
         assertNotNull("should not be null", clienteTest.getSobrenome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_vazio() {
         clienteTest.setSobrenome("");
         assertNotNull("should not be empty", clienteTest.getSobrenome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_em_branco() {
         clienteTest.setSobrenome(" ");
         assertNotNull("should not be blank", clienteTest.getSobrenome());
@@ -211,19 +214,19 @@ public class ClienteTest {
         clienteTest.setEmail("luc@s@contmatic.com.br");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_nulo() {
         clienteTest.setEmail(null);
         assertNotNull("should not be null", clienteTest.getEmail());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_vazio() {
         clienteTest.setEmail("");
         assertNotNull("should not be empty", clienteTest.getEmail());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_em_branco() {
         clienteTest.setEmail(" ");
         assertNotNull("should not be blank", clienteTest.getEmail());
@@ -239,19 +242,19 @@ public class ClienteTest {
         assertThat(clienteTest.getEmail(), is(not("lucaseloy70@hotmail.com")));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_nulo() {
         clienteTest.setCpf(null);
         assertNotNull("should not be null", clienteTest.getCpf());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_vazio() {
         clienteTest.setCpf("");
         assertNotNull("should not be empty", clienteTest.getCpf());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_em_branco() {
         clienteTest.setCpf(" ");
         assertNotNull("should not be blank", clienteTest.getCpf());

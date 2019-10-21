@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -17,8 +17,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import br.com.contmatic.prova01.Funcionario;
-import br.com.contmatic.prova01.Telefone;
+import br.com.contmatic.empresa.Funcionario;
+import br.com.contmatic.empresa.Telefone;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FuncionarioTest {
@@ -115,19 +115,19 @@ public class FuncionarioTest {
         assertFalse(funcionarioTest.equals(funcionarioTest2));
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_nulo() {
         funcionarioTest.setNome(null);
         assertNotNull("should not be null", funcionarioTest.getNome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_vazio() {
         funcionarioTest.setNome("");
         assertNotNull("should not be empty", funcionarioTest.getNome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nome_em_branco() {
         funcionarioTest.setNome(" ");
         assertNotNull("should not be blank", funcionarioTest.getNome());
@@ -169,19 +169,19 @@ public class FuncionarioTest {
         assertThat(funcionarioTest.getNome(), is(not("Grace")));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_nulo() {
         funcionarioTest.setSobrenome(null);
         assertNotNull("should not be null", funcionarioTest.getSobrenome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_vazio() {
         funcionarioTest.setSobrenome("");
         assertNotNull("should not be empty", funcionarioTest.getSobrenome());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_sobrenome_em_branco() {
         funcionarioTest.setSobrenome(" ");
         assertNotNull("should not be blank", funcionarioTest.getSobrenome());
@@ -227,19 +227,19 @@ public class FuncionarioTest {
         funcionarioTest.setEmail("luc@s@contmatic.com.br");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_nulo() {
         funcionarioTest.setEmail(null);
         assertNotNull("should not be null", funcionarioTest.getEmail());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_vazio() {
         funcionarioTest.setEmail("");
         assertNotNull("should not be empty", funcionarioTest.getEmail());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_email_em_branco() {
         funcionarioTest.setEmail(" ");
         assertNotNull("should not be blank", funcionarioTest.getEmail());
@@ -255,19 +255,19 @@ public class FuncionarioTest {
         assertThat(funcionarioTest.getEmail(), is(not("lucaseloy70@hotmail.com")));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_nulo() {
         funcionarioTest.setCpf(null);
         assertNotNull("should not be null", funcionarioTest.getCpf());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_vazio() {
         funcionarioTest.setCpf("");
         assertNotNull("should not be empty", funcionarioTest.getCpf());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cpf_em_branco() {
         funcionarioTest.setCpf(" ");
         assertNotNull("should not be blank", funcionarioTest.getCpf());
@@ -364,19 +364,19 @@ public class FuncionarioTest {
         assertThat(funcionarioTest.getCpf(), is(not("45896542355")));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cargo_nulo() {
         funcionarioTest.setCargo(null);
         assertNotNull("should not be null", funcionarioTest.getCargo());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cargo_vazio() {
         funcionarioTest.setCargo("");
         assertNotNull("should not be empty", funcionarioTest.getCargo());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cargo_em_branco() {
         funcionarioTest.setCargo(" ");
         assertNotNull("should not be blank", funcionarioTest.getCargo());
@@ -408,12 +408,12 @@ public class FuncionarioTest {
         funcionarioTest.setSalario(5000.00);
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_salario_nulo() {
         funcionarioTest.setSalario(null);
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_salario_invalido() {
         funcionarioTest.setSalario(0.0);
     }

@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -16,7 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import br.com.contmatic.prova01.Empresa;
+import br.com.contmatic.empresa.Empresa;
 
 public class EmpresaTest {
 
@@ -124,19 +124,19 @@ public class EmpresaTest {
         assertFalse(empTest.equals(empTest2));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cnpj_nulo() {
         empTest.setCnpj(null);
         assertNotNull("should not be null", empTest.getCnpj());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cnpj_vazio() {
         empTest.setCnpj("");
         assertNotNull("should not be empty", empTest.getCnpj());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_cnpj_em_branco() {
         empTest.setCnpj(" ");
         assertNotNull("should not be blank", empTest.getCnpj());
@@ -238,19 +238,19 @@ public class EmpresaTest {
         empTest.setRazaoSocial("Sport Clube Corinthians Paulista");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_razaoSocial_nula() {
         empTest.setRazaoSocial(null);
         assertNotNull("should not be null", empTest.getRazaoSocial());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_razaoSocial_vazio() {
         empTest.setRazaoSocial("");
         assertNotNull("should not be empty", empTest.getRazaoSocial());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_razaoSocial_em_branco() {
         empTest.setRazaoSocial(" ");
         assertNotNull("should not be blank", empTest.getRazaoSocial());
@@ -271,19 +271,19 @@ public class EmpresaTest {
         empTest.setNomeFantasia("Corinthians");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nomeFantasia_nulo() {
         empTest.setNomeFantasia(null);
         assertNotNull("should not be null", empTest.getNomeFantasia());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nomeFantasia_vazio() {
         empTest.setNomeFantasia("");
         assertNotNull("should not be empty", empTest.getRazaoSocial());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_nomeFantasia_invalido() {
         empTest.setNomeFantasia(" ");
         assertNotNull("should not be blank", empTest.getNomeFantasia());
@@ -304,19 +304,19 @@ public class EmpresaTest {
         empTest.setAreaAtuacao("Futebol");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_areaAtuacao_nula() {
         empTest.setAreaAtuacao(null);
         assertNotNull("should not be null", empTest.getAreaAtuacao());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_areaAtuacao_vazio() {
         empTest.setAreaAtuacao("");
         assertNotNull("should not be empty", empTest.getAreaAtuacao());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_areaAtuacao_invalido() {
         empTest.setAreaAtuacao(" ");
         assertNotNull("should not be blank", empTest.getAreaAtuacao());
@@ -337,19 +337,19 @@ public class EmpresaTest {
         empTest.setTelefone("1122578946");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_telefone_nulo() {
         empTest.setTelefone(null);
         assertNotNull("should not be null", empTest.getTelefone());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_telefone_vazio() {
         empTest.setTelefone("");
         assertNotNull("should not be empty", empTest.getTelefone());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_telefone_invalido() {
         empTest.setTelefone(" ");
         assertNotNull("should not be blank", empTest.getTelefone());
@@ -385,17 +385,17 @@ public class EmpresaTest {
         empTest.setNumeroFuncionarios("45");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_numumeroFuncionarios_nulo() {
         empTest.setNumeroFuncionarios(null);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_numumeroFuncionarios_vazio() {
         empTest.setNumeroFuncionarios("");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_numumeroFuncionarios_em_branco() {
         empTest.setNumeroFuncionarios(" ");
     }

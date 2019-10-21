@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 public class ValidadorCpfCnpj {
 
@@ -37,7 +37,7 @@ public class ValidadorCpfCnpj {
     
     private static void verificaCpfNuloOuEmBranco(String cpf) {
         if (cpf == null || cpf.isEmpty() || cpf.equals(" ")) {
-            throw new NullPointerException("O CPF não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O CPF não deve ser nulo ou vazio.");
         }
     }
 
@@ -74,7 +74,7 @@ public class ValidadorCpfCnpj {
 
     private static void verificaCnpjNuloOuEmBranco(String cnpj) {
         if (cnpj == null || cnpj.isEmpty() || cnpj.equals(" ")) {
-            throw new NullPointerException("O CNPJ não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O CNPJ não deve ser nulo ou vazio.");
         }
     }
 

@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 public class Telefone {
 
@@ -30,10 +30,14 @@ public class Telefone {
     }
 
     private void verificaDddInvalido(Integer ddd) {
-        if (ddd.equals(20) || ddd.equals(23) || ddd.equals(25) || ddd.equals(26) || ddd.equals(29) || ddd.equals(30) || ddd.equals(36) || ddd.equals(39) || ddd.equals(40) || ddd.equals(50) ||
-            ddd.equals(52) || ddd.equals(56) || ddd.equals(57) || ddd.equals(58) || ddd.equals(59) || ddd.equals(60) || ddd.equals(70) || ddd.equals(72) || ddd.equals(76) || ddd.equals(78) ||
-            ddd.equals(80) || ddd.equals(90)) {
-            throw new IllegalArgumentException("DDD inválido.");
+        Integer dddInvalido[] = { 20, 23, 25, 26, 29, 30, 36, 39, 40, 50, 52, 56, 57, 58, 59, 60, 70, 72, 76, 78, 80, 90 };
+        
+        int i;
+        for(i = 0 ; i < 21 ; i++) {
+            if (ddd == dddInvalido[i]) {
+                throw new IllegalArgumentException("DDD Inválido.");
+            }
+
         }
     }
 
@@ -45,7 +49,7 @@ public class Telefone {
 
     private void verificaDddNulo(Integer ddd) {
         if (ddd == null) {
-            throw new NullPointerException("O DDD não deve ser nulo.");
+            throw new IllegalArgumentException("O DDD não deve ser nulo.");
         }
     }
 
@@ -67,7 +71,7 @@ public class Telefone {
 
     private void verificaNumeroNulo(Integer numero) {
         if (numero == null) {
-            throw new NullPointerException("O número não deve ser nulo.");
+            throw new IllegalArgumentException("O número não deve ser nulo.");
         }
     }
 
@@ -82,7 +86,7 @@ public class Telefone {
 
     private void verificaTipoNuloOuEmBranco(String tipo) {
         if (tipo == null || tipo.isEmpty() || tipo.equals(" ")) {
-            throw new NullPointerException("O Tipo não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O Tipo não deve ser nulo ou vazio.");
         }
     }
 

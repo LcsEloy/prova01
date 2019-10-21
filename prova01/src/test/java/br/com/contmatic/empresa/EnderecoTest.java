@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -14,7 +14,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import br.com.contmatic.prova01.Endereco;
+import br.com.contmatic.empresa.Endereco;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EnderecoTest {
@@ -106,19 +106,19 @@ public class EnderecoTest {
 		endTest.setLogradouro("Rua São Jorge, 777");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_logradouro_nulo() {
 		endTest.setLogradouro(null);
 		assertNotNull("should not be null", endTest.getLogradouro());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_logradouro_vazio() {
 		endTest.setLogradouro("");
 		assertNotNull("should not be empty", endTest.getLogradouro());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_logradouro_invalido() {
 		endTest.setLogradouro(" ");
 		assertNotNull("should not be blank", endTest.getLogradouro());
@@ -139,19 +139,19 @@ public class EnderecoTest {
 		endTest.setBairro("Vila Maria");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_bairro_nulo() {
 		endTest.setBairro(null);
 		assertNotNull("should not be null", endTest.getBairro());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_bairro_vazio() {
 		endTest.setBairro("");
 		assertNotNull("should not be empty", endTest.getBairro());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_bairro_invalido() {
 		endTest.setBairro(" ");
 		assertNotNull("should not be blank", endTest.getBairro());
@@ -172,19 +172,19 @@ public class EnderecoTest {
 		endTest.setCep("02135664");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_cep_nulo() {
 		endTest.setCep(null);
 		assertNotNull("should not be null", endTest.getCep());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_cep_vazio() {
 		endTest.setCep("");
 		assertNotNull("should not be empty", endTest.getCep());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_cep_em_branco() {
 		endTest.setCep(" ");
 		assertNotNull("should not be blank", endTest.getCep());
@@ -275,19 +275,19 @@ public class EnderecoTest {
 		endTest.setMunicipio("São Paulo");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_municipio_nulo() {
 		endTest.setMunicipio(null);
 		assertNotNull("should not be null", endTest.getMunicipio());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_municipio_vazio() {
 		endTest.setMunicipio("");
 		assertNotNull("should not be empty", endTest.getMunicipio());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_municipio_invalido() {
 		endTest.setMunicipio(" ");
 		assertNotNull("should not be blank", endTest.getMunicipio());
@@ -308,19 +308,19 @@ public class EnderecoTest {
 		endTest.setUf("SP");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_uf_nulo() {
 		endTest.setUf(null);
 		assertNotNull("should not be null", endTest.getUf());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_uf_vazio() {
 		endTest.setUf("");
 		assertNotNull("should not be empty", endTest.getUf());
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_uf_invalido() {
 		endTest.setUf(" ");
 		assertNotNull("should not be blank", endTest.getUf());

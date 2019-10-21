@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 public class Endereco {
 
@@ -35,7 +35,7 @@ public class Endereco {
 
     private void verificaLogradouroNuloOuEmBranco(String logradouro) {
         if (logradouro == null || logradouro.isEmpty() || logradouro.equals(" ")) {
-            throw new NullPointerException("O logradouro não deve ser nulo ou vazio.");
+            throw new IllegalArgumentException("O logradouro não deve ser nulo ou vazio.");
         }
     }
 
@@ -50,7 +50,7 @@ public class Endereco {
 
     private void verificaBairroNuloOuEmBranco(String bairro) {
         if (bairro == null || bairro.isEmpty() || bairro.equals(" ")) {
-            throw new NullPointerException("O Bairro não deve ser nulo ou vazio");
+            throw new IllegalArgumentException("O Bairro não deve ser nulo ou vazio");
         }
     }
 
@@ -89,7 +89,7 @@ public class Endereco {
 
     private void verificaCepNuloOuEmBranco(String cep) {
         if (cep == null || cep.isEmpty() || cep.equals(" ")) {
-            throw new NullPointerException("O CEP não deve ser nulo ou vazio");
+            throw new IllegalArgumentException("O CEP não deve ser nulo ou vazio");
         }
     }
 
@@ -104,7 +104,7 @@ public class Endereco {
 
     private void verificaMunicipioNuloOuEmBranco(String municipio) {
         if (municipio == null || municipio.isEmpty() || municipio.equals(" ")) {
-            throw new NullPointerException("O Município não deve ser nulo ou vazio");
+            throw new IllegalArgumentException("O Município não deve ser nulo ou vazio");
         }
     }
 
@@ -135,7 +135,7 @@ public class Endereco {
 
     private void verificaUfNulaOuEmBranco(String uf) {
         if (uf == null || uf.isEmpty() || uf.equals(" ")) {
-            throw new NullPointerException("A UF não deve ser nulo ou vazio");
+            throw new IllegalArgumentException("A UF não deve ser nulo ou vazio");
         }
     }
     

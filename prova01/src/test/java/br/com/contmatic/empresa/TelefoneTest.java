@@ -1,4 +1,4 @@
-package br.com.contmatic.prova01;
+package br.com.contmatic.empresa;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,7 +13,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import br.com.contmatic.prova01.Telefone;
+import br.com.contmatic.empresa.Telefone;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TelefoneTest {
@@ -99,7 +99,7 @@ public class TelefoneTest {
         assertFalse(telefoneTest.equals(telefoneTest2));
     }    
         
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_ddd_nulo() {
         telefoneTest.setDdd(null);
     }
@@ -119,7 +119,7 @@ public class TelefoneTest {
         telefoneTest.setDdd(20);
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_numero_nulo() {
         telefoneTest.setNumero(null);
     }
@@ -134,17 +134,17 @@ public class TelefoneTest {
         telefoneTest.setNumero(1000000000);
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_tipo_nulo() {
         telefoneTest.setTipo(null);
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_tipo_em_branco() {
         telefoneTest.setTipo("");
     }
     
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_aceitar_tipo_vazio() {
         telefoneTest.setTipo(" ");
     }
