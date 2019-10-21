@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 public class Pessoa {
 
+    private static final String FORMATO_DE_EMAIL_VALIDO = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+
     private static final int TAMANHO_MAXIMO_SOBRENOME = 30;
 
     private static final int TAMANHO_MAXIMO_NOME = 15;
@@ -141,7 +143,7 @@ public class Pessoa {
 
     public static boolean isEmailValido(String email) {
         boolean emailValido = false;
-        String enderecoEmailValido = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        String enderecoEmailValido = FORMATO_DE_EMAIL_VALIDO;
         Pattern modeloEmail = Pattern.compile(enderecoEmailValido, Pattern.CASE_INSENSITIVE);
         Matcher validaCombinacao = modeloEmail.matcher(email);
         if (validaCombinacao.matches()) {
