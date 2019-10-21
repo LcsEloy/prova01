@@ -12,12 +12,17 @@ public class ValidadorCpfCnpj {
 
     private static int calcularDigito(String str, int[] peso) {
         int somaDigitosCpfCnpj = 0;
+        somaDigitosCpfCnpj = verificaDigitosValidos(str, peso, somaDigitosCpfCnpj);
+        somaDigitosCpfCnpj = 11 - somaDigitosCpfCnpj % 11;
+        return somaDigitosCpfCnpj > 9 ? 0 : somaDigitosCpfCnpj;
+    }
+
+    private static int verificaDigitosValidos(String str, int[] peso, int somaDigitosCpfCnpj) {
         for(int indice = str.length() - 1, digitoDocumento ; indice >= 0 ; indice--) {
             digitoDocumento = Integer.parseInt(str.substring(indice, indice + 1));
             somaDigitosCpfCnpj += digitoDocumento * peso[peso.length - str.length() + indice];
         }
-        somaDigitosCpfCnpj = 11 - somaDigitosCpfCnpj % 11;
-        return somaDigitosCpfCnpj > 9 ? 0 : somaDigitosCpfCnpj;
+        return somaDigitosCpfCnpj;
     }
 
     public static boolean isCpfValido(String cpf) {

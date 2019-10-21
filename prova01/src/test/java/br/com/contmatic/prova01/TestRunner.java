@@ -9,7 +9,6 @@ import org.junit.runners.Suite;
   EmpresaTest.class,
   EnderecoTest.class,
   FuncionarioTest.class,
-  PessoaTest.class,
   TelefoneTest.class
 })
 

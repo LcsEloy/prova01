@@ -23,18 +23,30 @@ public class Telefone {
     }
 
     public Integer setDdd(Integer ddd) {
-        if (ddd == null) {
-            throw new NullPointerException("O DDD não deve ser nulo.");
-        }
-        if (!(ddd >= MENOR_NUMERO_DDD && ddd <= MAIOR_NUMERO_DDD)) {
-            throw new IllegalArgumentException("O DDD deve ser entre os números 11 e 99");
-        }
+        verificaDddNulo(ddd);
+        verificaDddValido(ddd);
+        verificaDddInvalido(ddd);
+        return this.ddd = ddd;
+    }
+
+    private void verificaDddInvalido(Integer ddd) {
         if (ddd.equals(20) || ddd.equals(23) || ddd.equals(25) || ddd.equals(26) || ddd.equals(29) || ddd.equals(30) || ddd.equals(36) || ddd.equals(39) || ddd.equals(40) || ddd.equals(50) ||
             ddd.equals(52) || ddd.equals(56) || ddd.equals(57) || ddd.equals(58) || ddd.equals(59) || ddd.equals(60) || ddd.equals(70) || ddd.equals(72) || ddd.equals(76) || ddd.equals(78) ||
             ddd.equals(80) || ddd.equals(90)) {
             throw new IllegalArgumentException("DDD inválido.");
         }
-        return this.ddd = ddd;
+    }
+
+    private void verificaDddValido(Integer ddd) {
+        if (!(ddd >= MENOR_NUMERO_DDD && ddd <= MAIOR_NUMERO_DDD)) {
+            throw new IllegalArgumentException("O DDD deve ser entre os números 11 e 99");
+        }
+    }
+
+    private void verificaDddNulo(Integer ddd) {
+        if (ddd == null) {
+            throw new NullPointerException("O DDD não deve ser nulo.");
+        }
     }
 
     public Integer getNumero() {
@@ -42,13 +54,21 @@ public class Telefone {
     }
 
     public Integer setNumero(Integer numero) {
-        if (numero == null) {
-            throw new NullPointerException("O número não deve ser nulo.");
-        }
+        verificaNumeroNulo(numero);
+        verificaTamanhoCorretoNumero(numero);
+        return this.numero = numero;
+    }
+
+    private void verificaTamanhoCorretoNumero(Integer numero) {
         if (numero < 10000000 || numero > 999999999) {
             throw new IllegalArgumentException("O número deve conter entre 8 e 9 números.");
         }
-        return this.numero = numero;
+    }
+
+    private void verificaNumeroNulo(Integer numero) {
+        if (numero == null) {
+            throw new NullPointerException("O número não deve ser nulo.");
+        }
     }
 
     public String getTipo() {
